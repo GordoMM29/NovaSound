@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../css/modales.css">
+</head>
+<body>
+<div class="app-container">
+<div class="vista activa" id="vista-inicio">
+        <button class="btn btn-morado btn-login">
+            Iniciar sesión
+        </button>
+    <div class="login-logo">
+        NovaSound
+    </div>
+
+
+    <div class="catalogo-modelos">
+        <div class="modelo-card">
+            <img src="../assets/img/mini.png" alt="MINI">
+            <h3>MINI</h3>
+        </div>
+
+        <div class="modelo-card">
+            <img src="../assets/img/max.png" alt="MAX">
+            <h3>MAX</h3>
+        </div>
+
+        <div class="modelo-card">
+            <img src="../assets/img/sport.png" alt="SPORT">
+            <h3>SPORT</h3>
+        </div>
+
+        <div class="modelo-card">
+            <img src="../assets/img/pro.png" alt="PRO">
+            <h3>PRO</h3>
+        </div>
+        
+    </div>
+        <div class="acciones-inicio">
+        <button class="btn btn-morado">
+            Realizar pedido
+        </button>
+
+
+    </div>
+</div>
+</div>
+
+
+<div id="modal-modelo" class="modal oculto">
+    <div class="modal-contenido">
+        <h2 id="titulo-modelo"></h2>
+        <p id="descripcion-modelo"></p>
+
+        <img id="imagen-modelo" class="modelo-imagen" alt="Modelo NovaSound">
+
+        <div class="modal-acciones">
+            <button class="btn btn-rojo" id="cerrar-modelo">Cerrar</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

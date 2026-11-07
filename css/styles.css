@@ -1,0 +1,238 @@
+/*la verdad no sé qué estoy haciendo, pero algo tiene qué salir*/
+:root{
+    --azul: #0f56c6;
+    --azul-claro: #5670db;
+    --morado: #8b66dc;
+    --rosa: #ca73dc;
+    --gris-fondo: #e6e6e6;
+    --gris-contenedor: #f5f5f5;
+    --gris-card: #d9d9d9;
+
+    --degradado-novaxd: linear-gradient(
+        90deg, #0f56c6, #5670db, #8b66dc, #ca73dc);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background-color: var(--gris-fondo);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app-container{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 700px;
+    background-color: var(--gris-contenedor);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.app-container::before{
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 45px;
+    background: var(--degradado-novaxd);
+    z-index: 1;
+}
+
+.app-container::after{
+    content:"";
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+    height: 45px;
+    background: var(--degradado-novaxd);
+    z-index: 1;
+}
+
+.vista{
+    display: none;
+    flex: 1;
+    padding: 70px 40px 70px 40px;
+
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.vista.activa{
+    display: flex;
+}
+
+.card{
+    background-color: var(--gris-card);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.tabla-container{
+    margin-top: 20px;
+    background-color: var(--gris-card);
+    border-radius: 15px;
+    padding: 20px;
+}
+.btn{
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.2s;
+    color: white;
+}
+.btn:hover{
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+.btn-morado{
+    background: var(--degradado-novaxd);
+}
+.btn-verde{
+    background: #27ae60;
+}
+.btn-rojo{
+    background: #e74c3c;
+}
+.btn-azul{
+    background: #3498db;
+}
+
+
+
+
+/*layouts para que se acomoden las cosas y asi*/
+.flex{
+    display: flex;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-1{
+    flex: 1;
+}
+
+.flex-2{
+    flex: 2;
+}
+
+/*Espaciados para espaciar akjsjdkasxdxdxd*/
+.gap-5{
+    gap: 5px;
+}
+
+.gap-10{
+    gap: 10px;
+}
+
+.gap-20{
+    gap: 20px;
+}
+
+.gap-30{
+    gap: 30px;
+}
+
+
+/*Tamaños*/
+.min-200{
+    min-width: 200px;
+}
+
+.min-250{
+    min-width: 250px;
+}
+
+.min-300{
+    min-width: 300px;
+}
+
+.min-350{
+    min-width: 350px;
+}
+
+/*Para los íconos*/
+
+.icono-grande{
+    width: 100px;
+    height: 100px;
+    max-width: 100%;
+}
+
+.icono-grandote{
+    width: 120px;
+    height: 120px;
+    max-width: 100%;
+}
+
+
+/*si*/
+.oculto{
+    display: none !important;
+}
+
+/*Márgenes*/
+.mt-10{
+    margin-top: 10px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+
+.login-logo{
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: black;
+}
+
+.login-logo span{
+    color: var(--morado);
+}
+

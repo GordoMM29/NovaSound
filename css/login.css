@@ -1,0 +1,37 @@
+#vista-login{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-logo{
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.login-logo span{
+    color: var(--morado);
+}
+
+.login-form{
+    width: 320px;
+    margin-top: 25px;
+}
+
+.login-form .form-group{
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-form .form-group label{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.login-form .form-group input{
+    width: 100%;
+    max-width: 100%;
+}

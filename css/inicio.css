@@ -1,0 +1,81 @@
+#vista-inicio{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+    position: relative;
+}
+
+.acciones-inicio{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.catalogo-modelos{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.modelo-card{
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    width: 180px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.modelo-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.modelo-card img{
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+}
+
+.modelo-card h3{
+    margin-top: 15px;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+@media (max-width:768px){
+
+    .catalogo-modelos{
+        gap:15px;
+    }
+
+    .modelo-card{
+        width: 110px;
+    }
+
+    .modelo-card img{
+        width: 110px;
+        height: 110px;
+    }
+}
+
+
+.btn-login{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+}
+

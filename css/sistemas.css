@@ -1,0 +1,10 @@
+.sistemas-form{
+    max-width: 600px;
+}
+
+.sistemas-acciones{
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}

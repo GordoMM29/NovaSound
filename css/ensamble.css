@@ -1,0 +1,18 @@
+.estatus-registrado{
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.estatus-incidencia{
+    color: #e74c3c;
+    font-weight: bold;
+}
+.estatus-pendiente{
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.estatus-validado{
+    color: #3498db;
+    font-weight: bold;
+}

@@ -1,0 +1,6 @@
+Hola, los modales son como vistas emergentes y así.
+el navbar es barra de navegación.
+
+
+ya acabé los modales, aqui, cada uno tiene texto dinámico, según yo, se 
+debe modificar desde el backend

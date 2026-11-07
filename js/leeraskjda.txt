@@ -1,0 +1,2 @@
+perdon, se que no soy encargado del back, pero esto solo lo puse para separar, no sé si también van a agregar
+algun controlador o así.
