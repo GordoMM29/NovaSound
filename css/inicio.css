@@ -30,7 +30,7 @@
     background: white;
     border-radius: 20px;
     padding: 15px;
-    width: 180px;
+    width: 210px;
     cursor: pointer;
     transition: 0.2s;
     box-shadow: 0 5px 15px rgba(0,0,0,0.10);
@@ -43,10 +43,13 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
+.modelo-card :active{
+    transform: scale(0.97);
+}
 
 .modelo-card img{
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
 }
 
