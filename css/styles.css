@@ -78,6 +78,20 @@ body{
     display: flex;
 }
 
+
+.bienvenida{
+    margin-bottom: 40px;
+}
+.bienvenida p:first-child{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.bienvenida p:last-child{
+    font-size: 1.2rem;
+    margin-top: 0px;
+}
+
 .card{
     background-color: var(--gris-card);
     border-radius: 15px;
@@ -85,11 +99,47 @@ body{
 }
 
 .tabla-container{
-    margin-top: 20px;
+    margin-top: 2px;
     background-color: var(--gris-card);
     border-radius: 15px;
     padding: 20px;
 }
+
+.tabla-seccion{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: -60px;
+}
+
+.tabla-seccion h3{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    padding-bottom: 0;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #333;
+}
+td{
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #333;
+}
+
+thead{
+    background-color: var(--gris-card);
+}
+
+
 .btn{
     border: none;
     border-radius: 30px;
@@ -118,7 +168,9 @@ body{
 .btn-amarillo{
     background: #d5bf2b;
 }
-
+.btn-purpura{
+    background: var(--morado);
+}
 
 
 
@@ -258,3 +310,4 @@ body{
     background: white;
     font-size: 1rem;
 }
+

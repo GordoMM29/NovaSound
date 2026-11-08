@@ -16,3 +16,32 @@
     color: #3498db;
     font-weight: bold;
 }
+.ensamble-contenido{
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    margin-top: -20px;
+}
+
+.ensamble-lateral{
+    width: 420px;
+}
+
+.ensamble-botones{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.ensamble-botones button:last-child{
+    margin: 0 auto;
+}
+.ensamble-form{
+    min-height: 300px;
+    top: 50px;
+    left: 40px;
+}
+
+
