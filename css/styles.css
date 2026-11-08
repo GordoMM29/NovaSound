@@ -17,8 +17,8 @@
     --degradado-novaxd: linear-gradient(
         90deg, #0f56c6, #5670db, #8b66dc, #ca73dc);
 
-    --degradado-actu: linear-gradient(90deg, var(--amarillo), var(--naranja));
-    --degradado-eliminar: linear-gradient(90deg, var(--rojo-f), var(--rojo-c));
+    --degradado-actu: linear-gradient(180deg, var(--amarillo), var(--naranja));
+    --degradado-eliminar: linear-gradient(180deg, var(--rojo-f), var(--rojo-c));
     --degradado-agg: linear-gradient(90deg, var(--turquesa), var(--verde-c));
 }
 
