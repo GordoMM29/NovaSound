@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound - Embarque</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/embarque.css">
+</head>
+
+
+
+<body>
+
+<div class="app-container">
+<div class="vista activa" id="vista-embarque">
+    <div class="bienvenida">
+    <p>Bienvenid@, xd</p>
+    <p>Área: Embarque</p>
+</div>
+<div class="embarque-contenido">
+    <div class="embarque-lateral">
+        <div class="card embarque-form">
+            <h3>Crear embarque</h3>
+            <div class="form-group">
+                <label>ID Caja</label>
+                <select>
+                    <option>Seleccione caja</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Fecha Salida</label>
+                <input type="date">
+            </div>
+
+            <div class="form-group">
+                <label>Destino</label>
+                <input type="text">
+            </div>
+            <div class="embarque-acciones">
+                    <button class="btn btn-morado">Finalizar</button>
+            </div>
+        </div>
+        </div>
+
+        <div class="card embarque-centro">
+            
+            <div class="embarque-header">
+                <h3>Entregas en curso</h3>
+                    <input type="text" placeholder="Buscar mediante ID" class="form-group">
+                </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Fecha salida</th>
+                                <th>Fecha promesa</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </thead>
+                    </table>
+                
+        </div>
+
+        <div class="barco-container">
+            <div class="icono-barco">
+                <img src="../assets/img/barco.png" alt="barco">
+            </div>
+        </div>
+</div>
+</div>
+</div>
+</body>
+</html>
