@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound - Empaque</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/empaque.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+    <div class="vista activa" id="vista-empaque">
+        <div class="bienvenida">
+                <p>Bienvenid@, xd</p>
+                <p>Área: Empaque</p>
+            </div>
+        <div class="empaque-contenido">
+            <div class="empaque-lateral">
+
+                
+                <div class="card empaque-form">
+                <div class="form-group">
+                    <label>Código de rastreo</label>
+                    <input type="text">
+                </div>
+                    <div class="form-group">
+                    <label>Cliente</label>
+                    <input type="text">
+                </div>
+                
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Modelo</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Fecha Compromiso</label>
+                    <input type="date">
+                </div>
+
+                <div class="empaque-botones">
+                    <button class="btn btn-morado">Crear caja</button>
+                </div>
+                </div>
+            </div>
+                <div class="tabla-seccion">
+                    <h3>Registro de cajas</h3>
+                    <div class="tabla-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID Caja</th>
+                                    <th>Cliente</th>
+                                    <th>Modelo</th>
+                                    <th>Estatus</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="empaque-acciones">
+                        <button class="btn btn-verde btn-buscar">Buscar Caja</button>
+                        <button class="btn btn-rojo btn-incidente">Reportar Incidente</button>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

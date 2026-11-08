@@ -10,3 +10,38 @@
     box-shadow: 0 6px 15px rgba(0,0,0,.15);
 }
 
+.empaque-contenido{
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.empaque-lateral{
+    width: 420px;
+}
+
+.empaque-form{
+    min-height: 300px;
+}
+
+.empaque-botones{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.empaque-acciones{
+    position: relative;
+    margin-top: 20px;
+    height: 60px;
+}
+.btn-buscar{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.btn-incidente{
+    position: absolute;
+    right: 0;
+}
