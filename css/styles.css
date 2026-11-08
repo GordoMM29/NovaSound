@@ -7,9 +7,19 @@
     --gris-fondo: #e6e6e6;
     --gris-contenedor: #f5f5f5;
     --gris-card: #d9d9d9;
+    --amarillo: #f1c40f;
+    --naranja: #e67e22;
+    --rojo-f: #c0392b;
+    --rojo-c: #ff7675;
+    --turquesa: #00c9a7;
+    --verde-c: #2ecc71;
 
     --degradado-novaxd: linear-gradient(
         90deg, #0f56c6, #5670db, #8b66dc, #ca73dc);
+
+    --degradado-actu: linear-gradient(90deg, var(--amarillo), var(--naranja));
+    --degradado-eliminar: linear-gradient(90deg, var(--rojo-f), var(--rojo-c));
+    --degradado-agg: linear-gradient(90deg, var(--turquesa), var(--verde-c));
 }
 
 *{

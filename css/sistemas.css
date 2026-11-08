@@ -1,3 +1,45 @@
+#vista-sistemas{
+    justify-content: center;
+}
+
+.sistemas-contenido{
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.sistemas-tabla{
+    flex: 1;
+    min-height: 550px;
+}
+
+.sistemas-lateral{
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sistemas-lateral input{
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+}
+.sistemas-lateral .btn{
+    width: 100%;
+}
+
+.btn-actualizar{
+    background: var(--degradado-actu);
+}
+.btn-eliminar{
+    background: var(--degradado-eliminar);
+}
+.btn-agg{
+    background: var(--degradado-agg);
+}
+
 .sistemas-form{
     max-width: 600px;
 }
@@ -7,4 +49,22 @@
     gap: 15px;
     margin-top: 30px;
     flex-wrap: wrap;
+}
+
+.sistemas-header{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+.sistemas-header h3{
+    margin: 0;
+    line-height: 1;
+}
+.sistemas-header input{
+    width: 250px;
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 30px;
+    background: white;
+    font-size: 1rem;
 }
