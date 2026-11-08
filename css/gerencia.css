@@ -30,3 +30,23 @@
     margin-top: 25px;
     flex-wrap: wrap;
 }
+
+/*aqui les dejo las barras bro, barras, esto lo hago por los momos, por los momos, turututu...*/
+.barras{
+    display: flex;
+    align-items: flex-end;
+    height: 250px;
+    gap: 20px;
+}
+
+.barra{
+    flex: 1;
+    background: var(--morado);
+    border-radius: 10px 10px 0 0;
+}
+
+.eje-y{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
