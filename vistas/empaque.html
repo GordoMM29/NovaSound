@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/empaque.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/empaque.js" defer></script>
 </head>
 
 <body>
@@ -77,6 +79,100 @@
     </div>
 </div>
 
+<!-- Ventana emergente - Crear caja -->
+<div class="modal" id="modal-crear-caja">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Crear Caja</h2>
+            <button class="modal-close" id="cerrar-crear-caja">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Código de rastreo</label>
+                <input type="text" id="crear-codigo-rastreo" placeholder="Ej. CJ-0005">
+            </div>
+            <div class="form-group">
+                <label>Cliente</label>
+                <input type="text" id="crear-cliente" placeholder="Cliente">
+            </div>
+            <div class="form-group">
+                <label>Dirección</label>
+                <input type="text" id="crear-direccion" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <label>Modelo</label>
+                <input type="text" id="crear-modelo" placeholder="Modelo">
+            </div>
+            <div class="form-group">
+                <label>Fecha Compromiso</label>
+                <input type="date" id="crear-fecha-compromiso">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-crear-caja">Crear</button>
+            <button class="btn btn-gris" id="btn-cancelar-crear-caja">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Buscar caja -->
+<div class="modal" id="modal-buscar-caja">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Búsqueda por ID</h2>
+            <button class="modal-close" id="cerrar-buscar-caja">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 15px; text-align: center;">Ingrese el ID de la caja que deseas buscar:</p>
+            <div class="form-group">
+                <label>ID de Caja</label>
+                <input type="text" id="buscar-id-caja" placeholder="Ej. CJ-0001">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-buscar-caja">Buscar Caja</button>
+            <button class="btn btn-gris" id="btn-cancelar-buscar-caja">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Reportar incidente -->
+<div class="modal" id="modal-incidente-empaque">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Reportar Incidente</h2>
+            <button class="modal-close" id="cerrar-incidente-empaque">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Código de rastreo</label>
+                <input type="text" value="CJ-0005" readonly>
+            </div>
+            <div class="form-group">
+                <label>Fecha y Hora</label>
+                <input type="text" id="fecha-hora-incidente-empaque" readonly>
+            </div>
+            <div class="form-group">
+                <label>Tipo de incidente</label>
+                <select>
+                    <option>Unidades faltantes</option>
+                    <option>Etiqueta incorrecta</option>
+                    <option>Contenido equivocado</option>
+                    <option>Caja dañada</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Descripción (MAX. 300)</label>
+                <textarea rows="4" maxlength="300" placeholder="Describa el incidente..."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-rojo" id="btn-enviar-incidente-empaque">Enviar Incidente</button>
+            <button class="btn btn-gris" id="btn-cancelar-incidente-empaque">Cancelar</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

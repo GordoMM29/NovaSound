@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound - Calidad</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/calidad.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/calidad.js" defer></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="vista activa" id="vista-calidad">
+            <div class="bienvenida">
+                <p>Bienvenid@, CAL_1205</p>
+                <p>Área: Calidad</p>
+            </div>
+
+            <div class="tabla-seccion" style="margin-top: 20px;">
+                <div class="tabla-container" style="background-color: transparent; padding: 0;">
+                    <table style="border: 2px solid #333;">
+                        <thead>
+                            <tr>
+                                <th>Orden</th>
+                                <th>Modelo</th>
+                                <th>Estatus</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-calidad-body">
+                            <!-- Aquí se insertaran las filas dinámicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Panel de acciones de calidad -->
+            <div class="calidad-acciones-container">
+                
+                <div class="card">
+                    <p>¿Las unidades ya están listas para ser empacadas?</p>
+                    <button class="btn btn-verde" id="btn-abrir-liberar">Liberar</button>
+                </div>
+
+                <div class="card">
+                    <p>¿Las unidades deben ser desechadas?</p>
+                    <button class="btn btn-negro" id="btn-abrir-scrap">Scrap</button>
+                </div>
+
+                <div class="card">
+                    <p>¿Hay sospecha de defectos en alguna unidad?</p>
+                    <button class="btn btn-amarillo" id="btn-abrir-retener">Retener</button>
+                </div>
+
+                <div class="card">
+                    <p>¿La unidad es defectuosa, pero puede ser corregida retrabajándola?</p>
+                    <button class="btn btn-celeste" id="btn-abrir-retrabajar">Retrabajar</button>
+                </div>
+
+            </div>
+
+            <div class="calidad-botones-inferiores">
+                <button class="btn btn-rojo" id="btn-abrir-incidente-calidad">Reportar Incidente</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Detalle de calidad -->
+    <div class="modal" id="modal-detalle-calidad">
+        <div class="modal-contenedor" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2>Detalle de Orden</h2>
+                <button class="modal-close" id="cerrar-detalle-calidad">&times;</button>
+            </div>
+            <div class="modal-body" style="background-color: #ddd;">
+                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Orden</label>
+                        <input type="text" value="ORD_01_031126" readonly>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Modelo</label>
+                        <input type="text" value="MINI" readonly>
+                    </div>
+                </div>
+                
+                <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No. Serie</th>
+                                <th>Pruebas</th>
+                                <th>Apariencia</th>
+                                <th>Etiqueta</th>
+                                <th>Accesorios</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-detalle-calidad-body">
+                            <!-- Aquí se insertarán las filas dinamicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-gris" id="btn-cerrar-detalle-calidad">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reportar incidente  -->
+    <div class="modal" id="modal-incidente-calidad">
+        <div class="modal-contenedor">
+            <div class="modal-header">
+                <h2>Reportar Incidente</h2>
+                <button class="modal-close" id="cerrar-incidente-calidad">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Orden</label>
+                    <input type="text" value="ORD_01_031126" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Fecha y Hora</label>
+                    <input type="text" id="fecha-hora-incidente-calidad" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de incidente</label>
+                    <select>
+                        <option>Apariencia</option>
+                        <option>Etiqueta incorrecta</option>
+                        <option>Accesorio faltante</option>
+                        <option>Unidad dañada</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Descripción (MAX. 300)</label>
+                    <textarea rows="4" maxlength="300" placeholder="Describa el incidente..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-rojo" id="btn-enviar-incidente-calidad">Enviar Incidente</button>
+                <button class="btn btn-gris" id="btn-cancelar-incidente-calidad">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmar acciones -->
+    <div class="modal" id="modal-accion-calidad">
+        <div class="modal-contenedor" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2 id="titulo-accion-calidad">Confirmar Acción</h2>
+                <button class="modal-close" id="cerrar-accion-calidad">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 40px 20px;">
+                <p id="mensaje-accion-calidad" style="font-size: 1.2rem; margin-bottom: 20px; color: #333;">¿Está seguro de realizar esta acción?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-verde" id="btn-confirmar-accion-calidad">Sí, confirmar</button>
+                <button class="btn btn-gris" id="btn-cancelar-accion-calidad">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

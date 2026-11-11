@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/ensamble.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/ensamble.js"></script>
 </head>
 
 <body>
@@ -75,6 +77,81 @@
         </div>
     </div>
 
-        
+<!-- Ventana emergente - enviar pruebas -->
+<div class="modal" id="modal-pruebas-ensamble">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Enviar a pruebas</h2>
+            <button class="modal-close" id="cerrar-pruebas-ensamble">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group"><label>Orden</label><input type="text" value="ORD_01_031126" readonly></div>
+            <div class="form-group"><label>Modelo</label><input type="text" value="MINI" readonly></div>
+            <div class="form-group"><label>Cantidad Producida</label><input type="text" value="300" readonly></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-pruebas">Enviar</button>
+            <button class="btn btn-gris" id="btn-revisar-pruebas">Revisar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - registrar unidades -->
+<div class="modal" id="modal-registrar-ensamble">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Registro de unidades</h2>
+            <button class="modal-close" id="cerrar-registrar-ensamble">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group"><label>Orden</label><input type="text" value="ORD_01_031126" readonly></div>
+            <div class="form-group"><label>Línea</label><input type="text" value="Línea 1" readonly></div>
+            <div class="form-group"><label>Modelo</label><input type="text" value="MINI" readonly></div>
+            <div class="form-group"><label>Técnico</label><input type="text" value="ENS_1102" readonly></div>
+            <div class="form-group"><label>Cantidad</label><input type="number" placeholder="Ingrese cantidad"></div>
+            <div class="form-group"><label>Observación</label><textarea rows="3" placeholder="Sin observaciones ni contratiempos"></textarea></div>
+            <div class="aviso-amarillo">
+                <strong>AVISO</strong><br>
+                El total no puede superar la cantidad de la orden.
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-purpura" id="btn-confirmar-registrar-ensamble">Registrar</button>
+            <button class="btn btn-gris" id="btn-cancelar-registrar-ensamble">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - reportar incidente (ensamble) -->
+<div class="modal" id="modal-incidente-ensamble">
+    <div class="modal-contenedor">
+        <div class="modal-header">
+            <h2>Reportar Incidente</h2>
+            <button class="modal-close" id="cerrar-incidente-ensamble">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group"><label>Orden</label><input type="text" value="ORD_01_031126" readonly></div>
+            <div class="form-group"><label>Línea</label><input type="text" value="Línea 1" readonly></div>
+            <div class="form-group"><label>Técnico</label><input type="text" value="ENS_1102" readonly></div>
+            <div class="form-group"><label>Fecha y Hora</label><input type="text" id="fecha-hora-incidente-ensamble" readonly></div>
+            <div class="form-group">
+                <label>Tipo de incidente</label>
+                <select>
+                    <option>Pieza dañada</option>
+                    <option>Falta de componente</option>
+                    <option>Falla de equipo</option>
+                    <option>Conteo incorrecto</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Descripcion (MAX. 300 caracteres)</label><textarea rows="4" maxlength="300" placeholder="Describa el incidente..."></textarea></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-rojo" id="btn-enviar-incidente-ensamble">Enviar Incidente</button>
+            <button class="btn btn-gris" id="btn-cancelar-incidente-ensamble">Cancelar</button>
+        </div>
+    </div>
+</div>
+
     </body>
 </html>

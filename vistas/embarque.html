@@ -8,9 +8,9 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/embarque.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/embarque.js" defer></script>
 </head>
-
-
 
 <body>
 
@@ -73,6 +73,25 @@
         </div>
 </div>
 </div>
+</div>
+
+<!-- Ventana emergente - Embarque Liberado -->
+<div class="modal" id="modal-embarque-liberado">
+    <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
+        <div class="modal-header">
+            <h2>Embarque liberado</h2>
+            <button class="modal-close" id="cerrar-embarque-liberado">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 40px 20px;">
+            <p style="font-size: 1.1rem; color: #333; margin-bottom: 20px;">
+                El embarque entrará en tránsito, consulte su estado más adelante.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-volver-embarque-liberado">Volver</button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

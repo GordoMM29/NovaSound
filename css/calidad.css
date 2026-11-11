@@ -1,0 +1,85 @@
+/* Contenedor de la tabla principal */
+#vista-calidad .tabla-seccion {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#vista-calidad .tabla-container table {
+    background-color: #e0e0e0; /* Fondo gris claro para la tabla */
+    border: 2px solid #333;
+}
+
+#vista-calidad .tabla-container th {
+    border: 2px solid #333;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #d0d0d0;
+}
+
+#vista-calidad .tabla-container td {
+    border: 2px solid #333;
+    text-align: center;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+/* Panel de acciones  */
+.calidad-acciones-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Tarjetas de acción individuales */
+.calidad-acciones-container .card {
+    background-color: #e0e0e0; 
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 180px;
+}
+
+.calidad-acciones-container .card p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Contenedor para los botones inferiores (como Reportar Incidente) */
+.calidad-botones-inferiores {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .calidad-acciones-container {
+        grid-template-columns: 1fr; /* Una sola columna en moviles */
+    }
+    
+    #vista-calidad .tabla-container {
+        overflow-x: auto; /* Scroll horizontal si la tabla es muy ancha */
+    }
+}
+
+/* Botón Scrap  */
+.btn-negro {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+/* Botón Retrabajar */
+.btn-celeste {
+    background-color: #a8e6cf !important;
+    color: #333 !important;
+}

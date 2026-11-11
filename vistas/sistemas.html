@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/sistemas.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/sistemas.js" defer></script>
 </head>
 
 <body>
@@ -38,7 +40,6 @@
 
             <div class="sistemas-lateral">
 
-
                 <button class="btn btn-actualizar">Actualizar usuario</button>
                 <button class="btn btn-eliminar">Eliminar usuario</button>
                 <button class="btn btn-agg">Agregar usuario</button>
@@ -46,6 +47,140 @@
             </div>
         </div>
 </div>
+</div>
+
+<!-- Ventana emergente - Actualizar usuario -->
+<div class="modal" id="modal-actualizar-usuario">
+    <div class="modal-contenedor" style="max-width: 700px;">
+        <div class="modal-header">
+            <h2>Actualizar Usuario</h2>
+            <button class="modal-close" id="cerrar-actualizar-usuario">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>ID de Usuario</label>
+                <input type="text" placeholder="Ej. 5">
+                <button class="btn btn-verde" style="margin-left: 10px; padding: 5px 15px;">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" placeholder="Juan Jose">
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input type="text" placeholder="Monterreal Valles">
+            </div>
+            <div class="form-group">
+                <label>Área</label>
+                <input type="text" placeholder="Produccion">
+            </div>
+            <div class="form-group">
+                <label>ID de Línea</label>
+                <input type="text" placeholder="0987">
+            </div>
+            <div class="form-group">
+                <label>ID de Turno</label>
+                <input type="text" placeholder="1207">
+            </div>
+            <div class="form-group">
+                <label>ID de Rol</label>
+                <input type="text" placeholder="7899">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-guardar-actualizar-usuario">Guardar cambios</button>
+            <button class="btn btn-gris" id="btn-cancelar-actualizar-usuario">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Eliminar usuario -->
+<div class="modal" id="modal-eliminar-usuario">
+    <div class="modal-contenedor" style="max-width: 700px;">
+        <div class="modal-header">
+            <h2>Eliminar Usuario</h2>
+            <button class="modal-close" id="cerrar-eliminar-usuario">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>ID de Usuario</label>
+                <input type="text" placeholder="Ej. 8">
+                <button class="btn btn-verde" style="margin-left: 10px; padding: 5px 15px;">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" placeholder="Roberto Carlos">
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input type="text" placeholder="Reyes de la Torre">
+            </div>
+            <div class="form-group">
+                <label>Área</label>
+                <input type="text" placeholder="Embarques">
+            </div>
+            <div class="form-group">
+                <label>ID de Línea</label>
+                <input type="text" placeholder="11982">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Ingreso</label>
+                <input type="text" placeholder="11/02/2006">
+            </div>
+            <div class="form-group">
+                <label>ID de Rol</label>
+                <input type="text" placeholder="9981">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-rojo" id="btn-confirmar-eliminar-usuario">Eliminar</button>
+            <button class="btn btn-gris" id="btn-cancelar-eliminar-usuario">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Agregar usuario -->
+<div class="modal" id="modal-agregar-usuario">
+    <div class="modal-contenedor" style="max-width: 700px;">
+        <div class="modal-header">
+            <h2>Agregar Usuario</h2>
+            <button class="modal-close" id="cerrar-agregar-usuario">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" placeholder="Mario Juarez">
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input type="text" placeholder="Reyes de la Cruz">
+            </div>
+            <div class="form-group">
+                <label>Área</label>
+                <input type="text" placeholder="Sistemas">
+            </div>
+            <div class="form-group">
+                <label>ID de Línea</label>
+                <input type="text" placeholder="1123">
+            </div>
+            <div class="form-group">
+                <label>ID de Turno</label>
+                <input type="text" placeholder="9908">
+            </div>
+            <div class="form-group">
+                <label>ID de Rol</label>
+                <input type="text" placeholder="0091">
+            </div>
+            <div class="form-group">
+                <label>Fecha de Ingreso</label>
+                <input type="date">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-agregar-usuario">Insertar usuario</button>
+            <button class="btn btn-gris" id="btn-cancelar-agregar-usuario">Cancelar</button>
+        </div>
+    </div>
 </div>
 
 </body>
