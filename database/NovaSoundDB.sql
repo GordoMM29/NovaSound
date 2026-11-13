@@ -14,7 +14,7 @@ CREATE TABLE lineas(
 	AREA VARCHAR(30) NOT NULL,
 	ID_turno VARCHAR(10) NOT NULL,
 
-	CONSTRAINT fk_idTurno FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO)	
+	CONSTRAINT fk_idTurno_lineas FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO)	
 );
 
 CREATE TABLE roles(
@@ -33,9 +33,9 @@ CREATE TABLE usuarios (
 	ID_rol VARCHAR(10) NOT NULL,
 	FECHA_INGRESO DATE NOT NULL,
 
-	CONSTRAINT fk_idLinea FOREIGN KEY (ID_linea) REFERENCES lineas(ID_LINEA),
-	CONSTRAINT fk_idTurno FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO),
-	CONSTRAINT fk_idRol FOREIGN KEY (ID_rol) REFERENCES roles(ID_ROL) 
+	CONSTRAINT fk_idLinea_usuarios FOREIGN KEY (ID_linea) REFERENCES lineas(ID_LINEA),
+	CONSTRAINT fk_idTurno_usuarios FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO),
+	CONSTRAINT fk_idRol_usuarios FOREIGN KEY (ID_rol) REFERENCES roles(ID_ROL) 
 );
 
 CREATE TABLE clientes (
@@ -67,10 +67,10 @@ CREATE TABLE ordenes_produccion (
 	ESTATUS VARCHAR(30) NOT NULL,
 	TIPO_EMPAQUE VARCHAR(30) NOT NULL,
 
-	CONSTRAINT fk_idProducto FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
-	CONSTRAINT fk_idCliente FOREIGN KEY (ID_cliente) REFERENCES clientes(ID_CLIENTE),
-	CONSTRAINT fk_idLinea FOREIGN KEY (ID_linea) REFERENCES lineas(ID_LINEA),
-	CONSTRAINT fk_idTurno FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO)	
+	CONSTRAINT fk_idProducto_ordenesproduccion FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
+	CONSTRAINT fk_idCliente_ordenesproduccion FOREIGN KEY (ID_cliente) REFERENCES clientes(ID_CLIENTE),
+	CONSTRAINT fk_idLinea_ordenesproduccion FOREIGN KEY (ID_linea) REFERENCES lineas(ID_LINEA),
+	CONSTRAINT fk_idTurno_ordenesproduccion FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO)	
 );
 
 CREATE TABLE incidencias(
@@ -81,9 +81,9 @@ CREATE TABLE incidencias(
 	FECHA DATETIME NOT NULL,
 	DESCRIPCION VARCHAR(255) NOT NULL,
 
-	CONSTRAINT fk_idOrden FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
-	CONSTRAINT fk_idUsuario FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO),
-	CONSTRAINT fk_idProducto FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO)
+	CONSTRAINT fk_idOrden_incidencias FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
+	CONSTRAINT fk_idUsuario_incidencias FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO),
+	CONSTRAINT fk_idProducto_incidencias FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO)
 );
 
 CREATE TABLE pruebas_funcionales(
@@ -95,9 +95,9 @@ CREATE TABLE pruebas_funcionales(
 	ID_usuario VARCHAR(30) NOT NULL,
 	FECHA DATETIME NOT NULL,
 
-	CONSTRAINT fk_idOrden FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
-	CONSTRAINT fk_idProducto FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
-	CONSTRAINT fk_idUsuario FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO)
+	CONSTRAINT fk_idOrden_pruebasfuncionales FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
+	CONSTRAINT fk_idProducto_pruebasfuncionales FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
+	CONSTRAINT fk_idUsuario_pruebasfuncionales FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO)
 );
 
 CREATE TABLE cajas(
@@ -110,8 +110,8 @@ CREATE TABLE cajas(
 	TIPO_EMPAQUE VARCHAR(30) NOT NULL,
 	ESTATUS VARCHAR(30) NOT NULL,
 
-	CONSTRAINT fk_idOrden FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
-	CONSTRAINT fk_idProducto FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO)
+	CONSTRAINT fk_idOrden_cajas FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
+	CONSTRAINT fk_idProducto_cajas FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO)
 );
 
 CREATE TABLE unidades (
@@ -124,9 +124,9 @@ CREATE TABLE unidades (
     ESTATUS_CALIDAD VARCHAR(30) NOT NULL,    
     ID_caja VARCHAR(30) NULL,                
     
-    CONSTRAINT fk_idOrden FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
-    CONSTRAINT fk_idProducto FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
-    CONSTRAINT fk_idCaja FOREIGN KEY (ID_caja) REFERENCES cajas(ID_CAJA)
+    CONSTRAINT fk_idOrden_unidades FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN),
+    CONSTRAINT fk_idProducto_unidades FOREIGN KEY (ID_producto) REFERENCES productos(ID_PRODUCTO),
+    CONSTRAINT fk_idCaja_unidades FOREIGN KEY (ID_caja) REFERENCES cajas(ID_CAJA)
 );
 
 CREATE TABLE inspeccion (
@@ -141,9 +141,9 @@ CREATE TABLE inspeccion (
 	ESTATUS_ACCESORIOS VARCHAR(30) NOT NULL,
     ESTATUS_FINAL VARCHAR(30) NOT NULL,
     
-    CONSTRAINT fk_unidadSerie FOREIGN KEY (NUMERO_SERIE) REFERENCES unidades(NUMERO_SERIE),
-	CONSTRAINT fk_idUsuario FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO),
-	CONSTRAINT fk_idOrden FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN)
+    CONSTRAINT fk_unidadSerie_inspeccion FOREIGN KEY (NUMERO_SERIE) REFERENCES unidades(NUMERO_SERIE),
+	CONSTRAINT fk_idUsuario_inspeccion FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO),
+	CONSTRAINT fk_idOrden_inspeccion FOREIGN KEY (ID_orden) REFERENCES ordenes_produccion(ID_ORDEN)
 );
 
 CREATE TABLE embarques(
@@ -153,7 +153,7 @@ CREATE TABLE embarques(
 	DESTINO VARCHAR(100) NOT NULL,
 	ESTATUS VARCHAR(30) NOT NULL,
 
-	CONSTRAINT fk_idCaja FOREIGN KEY (ID_caja) REFERENCES cajas(ID_CAJA)
+	CONSTRAINT fk_idCaja_embarques FOREIGN KEY (ID_caja) REFERENCES cajas(ID_CAJA)
 
 );
 
@@ -165,5 +165,5 @@ CREATE TABLE solicitudes_cambios (
     MOTIVO VARCHAR(255) NOT NULL,
     ESTATUS VARCHAR(30) NOT NULL,
     
-    CONSTRAINT fk_idUsuario FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO)
+    CONSTRAINT fk_idUsuario_solicitudes FOREIGN KEY (ID_usuario) REFERENCES usuarios(ID_USUARIO)
 );
