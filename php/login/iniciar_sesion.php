@@ -16,19 +16,19 @@ if (empty($usuarioInput) || empty($password)) {
 
 $pdo = conexion::obtenerInstancia()->obtenerConexion();
 
-$stmt = $pdo->prepare("SELECT nombre, contrasena FROM usuarios WHERE usuario = :usuario");
-$stmt->execute(['usuario' => $usuarioInput]);
+$stmt = $pdo->prepare("SELECT ID_USUARIO, NOMBRE, CONTRASENA FROM usuarios WHERE CORREO = :correo LIMIT 1");
+$stmt->execute(['correo' => $usuarioInput]);
 $datosUsuario = $stmt->fetch();
 
-if ($datosUsuario && password_verify($password, $datosUsuario['contrasena'])) {
+if ($datosUsuario && $password === $datosUsuario['CONTRASENA']) {
     session_regenerate_id(true);
 
-    $_SESSION['usuario_id']     = $datosUsuario['id'];
-    $_SESSION['usuario_nombre'] = $datosUsuario['nombre'];
+    $_SESSION['usuario_id']     = $datosUsuario['ID_USUARIO'];
+    $_SESSION['usuario_nombre'] = $datosUsuario['NOMBRE'];
 
-    header("Location: ../../views/inicio.html");
+    header("Location: ../../vistas/inicio.html");
     exit();
 } else {
-    header("Location: ../../views/login.html");
+    header("Location: ../../vistas/login.html");
     exit();
 }
