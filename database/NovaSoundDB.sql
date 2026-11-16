@@ -8,6 +8,11 @@ CREATE TABLE turnos(
 	AREA VARCHAR(30) NOT NULL
 );
 
+INSERT INTO turnos (ID_TURNO, NOMBRE, AREA) VALUES
+('T1-PROD', 'Turno 1', 'Producion'),
+('T2-PROD', 'Turno 2', 'Produccion');
+
+
 CREATE TABLE lineas(
 	ID_LINEA VARCHAR(10) PRIMARY KEY NOT NULL,
 	NOMBRE VARCHAR(30) NOT NULL,
@@ -17,11 +22,20 @@ CREATE TABLE lineas(
 	CONSTRAINT fk_idTurno_lineas FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO)	
 );
 
+INSERT INTO lineas (ID_LINEA, NOMBRE, AREA, ID_turno) VALUES
+('L1-PROD', 'Linea 1', 'Produccion', 'T1-PROD'),
+('L2-PROD', 'Linea 2', 'Produccion', 'T1-PROD'),
+('L3-PROD', 'Linea 3', 'Produccion', 'T2-PROD'),
+('L4-PROD', 'Linea 4', 'Produccion', 'T2-PROD');
+
 CREATE TABLE roles(
 	ID_ROL VARCHAR(10) PRIMARY KEY NOT NULL,
 	NOMBRE VARCHAR(30) NOT NULL
 );
 
+INSERT INTO roles (ID_ROL, NOMBRE) VALUES
+('ROL-EMPLEADO', 'Empleado'),
+('ROL-ADMIN', 'Administrador');
 
 CREATE TABLE usuarios (
 	ID_USUARIO VARCHAR(30) PRIMARY KEY NOT NULL,
@@ -39,6 +53,10 @@ CREATE TABLE usuarios (
 	CONSTRAINT fk_idTurno_usuarios FOREIGN KEY (ID_turno) REFERENCES turnos(ID_TURNO),
 	CONSTRAINT fk_idRol_usuarios FOREIGN KEY (ID_rol) REFERENCES roles(ID_ROL) 
 );
+
+INSERT INTO usuarios (ID_USUARIO, NOMBRE, APELLIDOS, CORREO, CONTRASENA, AREA, ID_linea, ID_turno, ID_rol) VALUES
+('USR-PRUEBA', 'Mati', 'Momichis', 'admin@novasound.com', 'admin123', 'Administracion', NULL, NULL, 'ROL-ADMIN'),
+('USR-EMPLEADO1', 'Juan', 'Perez', 'juan@novasound.com', 'juan123', 'Produccion', 'L1-PROD', 'T1-PROD', 'ROL-EMPLEADO');
 
 CREATE TABLE clientes (
     ID_CLIENTE INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
