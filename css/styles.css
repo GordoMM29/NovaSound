@@ -181,6 +181,10 @@ thead{
 .btn-purpura{
     background: var(--morado);
 }
+.btn-gris {
+    background-color: #7f8c8d; 
+    color: white;
+}
 
 
 

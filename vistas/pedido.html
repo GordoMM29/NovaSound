@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound - Realizar Pedido</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/pedido.css">
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/pedido.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-container" style="max-width: 1200px; width: 95%; margin: 20px auto;">
+    <div class="vista activa" id="vista-pedido">
+        <div class="bienvenida">
+            <p>Bienvenid@, Cliente Ejemplo</p>
+            <p>Área: Realizar Pedido</p>
+        </div>
+
+        <!-- Contenedor principal con estructura forzada -->
+        <div style="display: flex; flex-direction: column; gap: 25px; margin-top: 20px;">
+            
+            <!-- Formualrio para realizar un pedido -->
+            <div class="card pedido-info">
+    <div class="form-group">
+        <label>Cliente</label>
+        <input type="text" id="input-cliente-pedido" placeholder="Ingrese el nombre del cliente">
+    </div>
+    <div class="form-group">
+        <label>Dirección</label>
+        <input type="text" id="input-direccion-pedido" placeholder="Ingrese la dirección">
+    </div>
+    <div class="form-group">
+        <label>Fecha Compromiso</label>
+        <input type="date" id="fecha-compromiso-pedido">
+    </div>
+</div>
+
+            <!-- 2. Botón Agregar Modelo -->
+            <div style="display: flex; justify-content: flex-start;">
+                <button class="btn btn-azul" id="btn-abrir-agregar-modelo">Agregar modelo</button>
+            </div>
+
+            <!-- 3. Tabla de Modelos -->
+            <div style="background-color: #ddd; border-radius: 15px; padding: 20px;">
+                <h3 style="margin-bottom: 15px; font-weight: 500; color: #333;">Detalle del Pedido</h3>
+                <div style="background-color: #f5f5f5; border-radius: 10px; padding: 15px; overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 700px;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Modelo</th>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Colores disponibles</th>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Unidades por caja</th>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Cajas solicitadas</th>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Cantidad</th>
+                                <th style="padding: 12px 10px; text-align: left; border-bottom: 1px solid #ccc; background-color: #e0e0e0; font-weight: 600; color: #333;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-pedido-body">
+                            <!-- Aquí se insertarán las filas dinámicamente con JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4. Resumen del Pedido -->
+            <div style="display: flex; justify-content: flex-end;">
+                <div style="background-color: #ddd; border-radius: 15px; padding: 25px 30px; width: 100%; max-width: 400px;">
+                    <h3 style="margin-bottom: 20px; font-weight: 500; color: #333; text-align: center;">Resumen de pedido</h3>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #bbb; font-size: 1rem; color: #333;">
+                        <span>Total de cajas:</span>
+                        <span id="resumen-total-cajas" style="font-weight: 600;">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #bbb; font-size: 1rem; color: #333;">
+                        <span>Total de unidades:</span>
+                        <span id="resumen-total-unidades" style="font-weight: 600;">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; font-weight: bold; font-size: 1.1rem; color: #6a5acd; margin-top: 10px;">
+                        <span>Costo total:</span>
+                        <span id="resumen-costo-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Botones Finales -->
+            <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 10px; margin-bottom: 20px;">
+                <button class="btn btn-morado" id="btn-abrir-confirmar-pedido">Confirmar pedido</button>
+                <button class="btn btn-gris" onclick="window.history.back()">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Seleccionar modelos  -->
+<div class="modal" id="modal-agregar-modelo">
+    <div class="modal-contenedor" style="max-width: 500px;">
+        <div class="modal-header">
+            <h2>Seleccionar Modelos</h2>
+            <button class="modal-close" id="cerrar-agregar-modelo">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 15px; color: #555;">Marque los modelos que desea agregar al pedido:</p>
+            
+            <div class="lista-checkbox-modelos">
+                <label style="display: block; margin-bottom: 10px; font-size: 1.1rem;">
+                    <input type="checkbox" value="MINI" class="check-modelo"> MINI (Caja c/12 unidades)
+                </label>
+                <label style="display: block; margin-bottom: 10px; font-size: 1.1rem;">
+                    <input type="checkbox" value="MAX" class="check-modelo"> MAX (Caja c/4 unidades)
+                </label>
+                <label style="display: block; margin-bottom: 10px; font-size: 1.1rem;">
+                    <input type="checkbox" value="SPORT" class="check-modelo"> SPORT (Caja c/8 unidades)
+                </label>
+                <label style="display: block; margin-bottom: 10px; font-size: 1.1rem;">
+                    <input type="checkbox" value="PRO" class="check-modelo"> PRO (Caja c/6 unidades)
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-agregar-modelo">Agregar</button>
+            <button class="btn btn-gris" id="btn-cancelar-agregar-modelo">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Confirmación de pedido -->
+<div class="modal" id="modal-confirmar-pedido">
+    <div class="modal-contenedor" style="max-width: 600px;">
+        <div class="modal-header">
+            <h2>Confirmación de Pedido</h2>
+            <button class="modal-close" id="cerrar-confirmar-pedido">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 20px;">¿Está seguro de realizar este pedido?</p>
+            
+            <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px; margin-bottom: 20px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border-bottom: 1px solid #aaa; padding: 8px; text-align: left;">Modelos solicitados</th>
+                            <th style="border-bottom: 1px solid #aaa; padding: 8px; text-align: left;">Total de cajas</th>
+                            <th style="border-bottom: 1px solid #aaa; padding: 8px; text-align: left;">Total de unidades</th>
+                            <th style="border-bottom: 1px solid #aaa; padding: 8px; text-align: left;">Costo total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-confirmacion-body">
+                        <!-- Aquí se reflejará el resumen -->
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.9rem; color: #666;">Al confirmar, el pedido será enviado al área de producción.</p>
+        </div>
+        <div class="modal-footer" style="gap: 15px;">
+            <button class="btn btn-verde" id="btn-confirmar-pedido-final">Confirmar</button>
+            <button class="btn btn-rojo" id="btn-regresar-confirmar-pedido">Regresar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Mensaje de pedido exitoso -->
+<div class="modal" id="modal-pedido-exitoso">
+    <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
+        <div class="modal-header">
+            <h2>Pedido Realizado</h2>
+            <button class="modal-close" id="cerrar-pedido-exitoso">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 40px 20px;">
+            <p style="font-size: 1.1rem; color: #333; margin-bottom: 20px;">
+                Su pedido se ha realizado correctamente.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-volver-pedido-exitoso" onclick="window.history.back()">Volver</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
