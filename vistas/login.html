@@ -21,17 +21,17 @@
                 NovaSound
             </div>
 
-            <form class="login-form">
+            <form class="login-form" action="../php/login/iniciar_sesion.php" method="POST">
                 <div class="form-group">
                     <img src="../assets/img/usu.png" alt="USU" class="icono-login">
                     <label>Usuario</label>
-                    <input type="text">
+                    <input type="text" id="usuario" name="usuario" required>
                 </div>
 
                 <div class="form-group">
                     <img src="../assets/img/llave.png" alt="LLAVE" class="icono-login">
                     <label>Contraseña</label>
-                    <input type="password">
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <p class="registro-link">¿No tienes una cuenta? Regístrate</p>
                 <button class="btn btn-morado">Inicar Sesión</button>
