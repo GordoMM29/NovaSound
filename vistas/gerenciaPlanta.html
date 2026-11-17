@@ -8,35 +8,34 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/gerencia.css">
-    <link rel="stylesheet" href="../css/modales.css"> 
-    <script src="../js/gerencia.js" defer></script>
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/gerenciaPlanta.js" defer></script>
 </head>
 
 <body>
 <div class="app-container">
     <div class="vista activa" id="vista-gerencia">
         <div class="bienvenida">
-            <p>Bienvenid@, nombrexd</p>
+            <p id="nombre-gerencia">Bienvenid@, cargando...</p>
             <p>Área: Gerencia de Planta</p>
         </div>
-        
+
         <h1 class="titulo-gerencia">Cumplimiento de metas por departamento</h1>
 
         <div class="graficas-container">
-            <div class="card grafica-card">
+            <div class="card grafica-card" id="tarjeta-produccion">
                 <h3>Metas Producción</h3>
-                <!-- Aquí irían tus gráficas que vamos a usar xdd -->
+                <!-- Datos de producción obtenidos desde PHP y MySQL -->
             </div>
-            <div class="card grafica-card">
+            <div class="card grafica-card" id="tarjeta-calidad">
                 <h3>Metas Calidad</h3>
             </div>
-            <div class="card grafica-card">
+            <div class="card grafica-card" id="tarjeta-almacen">
                 <h3>Metas Almacén y embarques</h3>
-        </div>
+            </div>
         </div>
 
         <div class="gerencia-acciones">
-            <!-- Añadimos IDs a los botones para el JS -->
             <button class="btn btn-azul" id="btn-abrir-enviar-reporte">Enviar reporte por correo</button>
             <button class="btn btn-morado" id="btn-abrir-reporte-incidencias">Ver reporte de incidencias</button>
             <button class="btn btn-morado" id="btn-abrir-reporte-embarques">Ver reporte de embarques</button>
@@ -54,7 +53,7 @@
         </div>
         <div class="modal-body" style="background-color: #ddd;">
             <div style="margin-bottom: 15px;">
-                <input type="text" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
+                <input type="text" id="buscar-incidencias-gerencia" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
             </div>
             <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
                 <table>
@@ -90,7 +89,7 @@
         </div>
         <div class="modal-body" style="background-color: #ddd;">
             <div style="margin-bottom: 15px;">
-                <input type="text" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
+                <input type="text" id="buscar-embarques-gerencia" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
             </div>
             <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
                 <table>
@@ -126,12 +125,8 @@
         </div>
         <div class="modal-body" style="padding: 30px;">
             <p style="margin-bottom: 15px; color: #333;">Resumen general de la planta:</p>
-            <ul style="line-height: 1.8; color: #555;">
-                <li>Producción actual: 780 unidades</li>
-                <li>Meta mensual: 800 unidades</li>
-                <li>Incidencias registradas: 24</li>
-                <li>Embarques en curso: 3</li>
-                <li>Eficiencia general: 92%</li>
+            <ul id="resumen-general" style="line-height: 1.8; color: #555;">
+                <!-- PHP proporciona las cifras reales mediante el JavaScript -->
             </ul>
         </div>
         <div class="modal-footer">
@@ -140,7 +135,7 @@
     </div>
 </div>
 
-<!-- Ventana emergente - Confirmar descarga   -->
+<!-- Ventana emergente - Confirmar descarga -->
 <div class="modal" id="modal-reporte-descargado">
     <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
         <div class="modal-header">

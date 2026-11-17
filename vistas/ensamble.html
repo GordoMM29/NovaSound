@@ -9,42 +9,55 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/ensamble.css">
     <link rel="stylesheet" href="../css/modales.css">
-    <script src="../js/ensamble.js"></script>
+    <script src="../js/ensamble.js" defer></script>
 </head>
 
 <body>
     <div class="app-container">
         <div class="vista activa" id="vista-ensamble">
             <div class="bienvenida">
-                <p>Bienvenid@, xd</p>
-                <p>Área: Ensamble</p>
-            </div>
+             <p id="nombre-usuario">Bienvenid@, cargando...</p>
+             <p>Área: Ensamble</p>
+        </div>
 
             <div class="ensamble-contenido">
             <div class="ensamble-lateral">
+           
             <div class="card ensamble-form">
-                <div class="form-group">
-                    <label>Cliente</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Modelo</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Cantidad</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Color</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Fecha Compromiso</label>
-                    <input type="date">
-                </div>
+            <div class="form-group">
+    <label for="orden-ensamble">Orden</label>
+    <select id="orden-ensamble">
+        <option value="">Seleccione una orden</option>
+    </select>
+</div>
 
-            </div>
+                    <div class="form-group">
+                    <label for="cliente-ensamble">Cliente</label>
+        <input type="text" id="cliente-ensamble" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="modelo-ensamble">Modelo</label>
+        <input type="text" id="modelo-ensamble" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="cantidad-ensamble">Cantidad</label>
+        <input type="number" id="cantidad-ensamble" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="color-ensamble">Color</label>
+        <input type="text" id="color-ensamble" readonly>
+    </div>
+
+    <div class="form-group">
+        <label for="fecha-ensamble">Fecha Compromiso</label>
+        <input type="date" id="fecha-ensamble" readonly>
+    </div>
+
+</div>   
+
 
             <div class="ensamble-botones">
                 <button class="btn btn-verde">Enviar a pruebas</button>
