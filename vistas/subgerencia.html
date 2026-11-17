@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaSound - Subgerencia de Producción</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/subgerencia.css"> 
+    <link rel="stylesheet" href="../css/modales.css">
+    <script src="../js/subgerencia.js" defer></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="vista activa" id="vista-subgerencia">
+            <div class="bienvenida">
+                <p>Bienvenid@, SUB_1001</p>
+                <p>Área: Subgerencia de Producción</p>
+            </div>
+
+            <div class="subgerencia-contenido">
+                
+                <!-- Panel Izquierdo: Gráfica de Avances -->
+                <div class="card subgerencia-grafica">
+                    <h3>Avances en Producción</h3>
+                    <p style="text-align: center; margin-bottom: 20px;">Fecha: [Fecha actual]</p>
+                    <h4 style="text-align: center; margin-bottom: 15px; font-weight: 500;">Unidades producidas por línea</h4>
+                    
+                    <!-- Aqui se configura la gráfica con los datos de la BD (son datos simulados para que vean como saldra xddd)-->
+                    <div class="grafica-barras-horizontal">
+                    <div style="display: flex; justify-content: space-around; margin-top: 25px; background-color: #f5f5f5; padding: 15px; border-radius: 10px;">
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; color: #555;">Objetivo del turno</p>
+                    <p style="font-size: 1.3rem; font-weight: bold; color: #333;">500</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; color: #555;">Producido</p>
+                    <p style="font-size: 1.3rem; font-weight: bold; color: #2ecc71;">456</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; color: #555;">Diferencia</p>
+                    <p style="font-size: 1.3rem; font-weight: bold; color: #e74c3c;">-44</p>
+                    </div>
+                </div>
+                        <div class="barra-item">
+                            <span class="barra-label">Línea 1</span>
+                            <div class="barra-progreso" style="width: 100%;">456</div>
+                        </div>
+                        <div class="barra-item">
+                            <span class="barra-label">Línea 3</span>
+                            <div class="barra-progreso" style="width: 70%;">324</div>
+                        </div>
+                        <div class="barra-item">
+                            <span class="barra-label">Línea 2</span>
+                            <div class="barra-progreso" style="width: 50%;">234</div>
+                        </div>
+                        <div class="barra-item">
+                            <span class="barra-label">Línea 4</span>
+                            <div class="barra-progreso" style="width: 45%;">212</div>
+                        </div>
+                        <div class="barra-item">
+                            <span class="barra-label">Línea 5</span>
+                            <div class="barra-progreso" style="width: 25%;">111</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: #555;">
+                        <span>0</span>
+                        <span>200</span>
+                        <span>400</span>
+                    </div>
+                </div>
+
+                <!-- Panel Derecho -->
+                <div class="subgerencia-paneles-derecha">
+                    
+                    <!-- Panel Superior: Consultas y Descargas -->
+                    <div class="card subgerencia-consultas">
+                        <div class="consulta-item">
+                            <span>Consultar línea de Producción</span>
+                            <button class="btn btn-morado" id="btn-descargar-linea">Descargar reporte</button>
+                        </div>
+                        <div class="consulta-item">
+                            <span>Consultar órdenes de Producción</span>
+                            <button class="btn btn-morado" id="btn-descargar-ordenes">Descargar reporte</button>
+                        </div>
+                    </div>
+
+                    <!-- Panel Inferior: Solicitudes de Cambio -->
+                    <div class="card subgerencia-solicitudes">
+                        <h3>Solicitudes para hacer cambios</h3>
+                        
+                        <div class="solicitud-item">
+                            <span>[Solicitud 1]</span>
+                            <button class="btn btn-morado btn-abrir-solicitud" data-id="1">Opciones</button>
+                        </div>
+                        <div class="solicitud-item">
+                            <span>[Solicitud 2]</span>
+                            <button class="btn btn-morado btn-abrir-solicitud" data-id="2">Opciones</button>
+                        </div>
+                        <div class="solicitud-item">
+                            <span>[Solicitud 3]</span>
+                            <button class="btn btn-morado btn-abrir-solicitud" data-id="3">Opciones</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana emergente - Detalle de Solicitud -->
+    <div class="modal" id="modal-solicitud-subgerencia">
+        <div class="modal-contenedor" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>Detalle de Solicitud</h2>
+                <button class="modal-close" id="cerrar-solicitud-subgerencia">&times;</button>
+            </div>
+            <div class="modal-body" style="background-color: #ddd;">
+                <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sujeto de Cambio</th>
+                                <th>Usuario que solicita</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Motivos de Cambios</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-solicitud-body">
+                            <!-- Aquí se llenará dinámicamente con JS -->
+                            <tr>
+                                <td>Mejora de pasillos de la línea de producción</td>
+                                <td>Juan Carlos Juarez Reyes</td>
+                                <td>12/05/2026</td>
+                                <td>Poco espacio entre líneas de trabajo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer" style="gap: 15px;">
+                <button class="btn btn-verde" id="btn-aprobar-solicitud">Aprobar cambios</button>
+                <button class="btn btn-azul" id="btn-volver-solicitud">Volver</button>
+                <button class="btn btn-rojo" id="btn-rechazar-solicitud">Rechazar cambios</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ventana emergente - Confirmar Acción -->
+    <div class="modal" id="modal-confirmacion-subgerencia">
+        <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
+            <div class="modal-header">
+                <h2 id="titulo-confirmacion-subgerencia">Confirmación</h2>
+                <button class="modal-close" id="cerrar-confirmacion-subgerencia">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 40px 20px;">
+                <p id="mensaje-confirmacion-subgerencia" style="font-size: 1.1rem; color: #333; margin-bottom: 20px;">
+                    El reporte ha sido descargado exitosamente.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-verde" id="btn-volver-confirmacion-subgerencia">Volver</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Contenedor principal de la vista */
+.subgerencia-contenido {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Panel de la gráfica (Izquierda) */
+.subgerencia-grafica {
+    flex: 1;
+    min-width: 350px;
+    background-color: #ddd;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+/* Contenedor de las barras horizontales */
+.grafica-barras-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.barra-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.barra-label {
+    width: 60px;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: right;
+}
+
+.barra-progreso {
+    background-color: #9b59b6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 0 5px 5px 0;
+    font-size: 0.85rem;
+    min-width: 40px;
+    text-align: right;
+    transition: width 0.5s ease;
+}
+
+/* Panel Derecho (Consultas y Solicitudes) */
+.subgerencia-paneles-derecha {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Panel de consultas */
+.subgerencia-consultas {
+    background-color: #ddd;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.consulta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.consulta-item span {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Panel de solicitudes */
+.subgerencia-solicitudes {
+    background-color: #ddd;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.subgerencia-solicitudes h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.solicitud-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.solicitud-item span {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .subgerencia-contenido {
+        flex-direction: column;
+    }
+}

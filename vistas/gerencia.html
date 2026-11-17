@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/gerencia.css">
+    <link rel="stylesheet" href="../css/modales.css"> 
+    <script src="../js/gerencia.js" defer></script>
 </head>
 
 <body>
@@ -17,30 +19,172 @@
             <p>Bienvenid@, nombrexd</p>
             <p>Área: Gerencia de Planta</p>
         </div>
-        <h1 class="titulo-gerencia">
-            Cumplimiento de metas por departamento
-        </h1>
+        
+        <h1 class="titulo-gerencia">Cumplimiento de metas por departamento</h1>
 
         <div class="graficas-container">
             <div class="card grafica-card">
                 <h3>Metas Producción</h3>
+                <!-- Aquí irían tus gráficas que vamos a usar xdd -->
             </div>
             <div class="card grafica-card">
                 <h3>Metas Calidad</h3>
             </div>
             <div class="card grafica-card">
                 <h3>Metas Almacén y embarques</h3>
-            </div>
-
+        </div>
         </div>
 
         <div class="gerencia-acciones">
-            <button class="btn btn-morado">Ver reporte de incidencias</button>
-            <button class="btn btn-morado">Ver reporte de embarques</button>
-            <button class="btn btn-morado">Información general</button>
+            <!-- Añadimos IDs a los botones para el JS -->
+            <button class="btn btn-azul" id="btn-abrir-enviar-reporte">Enviar reporte por correo</button>
+            <button class="btn btn-morado" id="btn-abrir-reporte-incidencias">Ver reporte de incidencias</button>
+            <button class="btn btn-morado" id="btn-abrir-reporte-embarques">Ver reporte de embarques</button>
+            <button class="btn btn-morado" id="btn-abrir-info-general">Información general</button>
         </div>
     </div>
 </div>
-</body>
 
+<!-- ventana emergente - Reporte de Incidencias -->
+<div class="modal" id="modal-reporte-incidencias">
+    <div class="modal-contenedor" style="max-width: 900px;">
+        <div class="modal-header">
+            <h2>Reporte de Incidencias</h2>
+            <button class="modal-close" id="cerrar-reporte-incidencias">&times;</button>
+        </div>
+        <div class="modal-body" style="background-color: #ddd;">
+            <div style="margin-bottom: 15px;">
+                <input type="text" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
+            </div>
+            <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID de Incidencia</th>
+                            <th>ID de la Orden</th>
+                            <th>ID de Usuario que reportó</th>
+                            <th>ID del Producto</th>
+                            <th>Fecha del reporte</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-incidencias-body">
+                        <!-- Aquí se insertarán las filas dinámicamente con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-descargar-reporte-incidencias">Descargar reporte</button>
+            <button class="btn btn-gris" id="btn-volver-reporte-incidencias">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- ventana emergente - Reporte de Embarques -->
+<div class="modal" id="modal-reporte-embarques">
+    <div class="modal-contenedor" style="max-width: 900px;">
+        <div class="modal-header">
+            <h2>Reporte de Embarques</h2>
+            <button class="modal-close" id="cerrar-reporte-embarques">&times;</button>
+        </div>
+        <div class="modal-body" style="background-color: #ddd;">
+            <div style="margin-bottom: 15px;">
+                <input type="text" placeholder="Buscar mediante ID" style="padding: 8px 15px; border-radius: 20px; border: 1px solid #aaa; width: 200px;">
+            </div>
+            <div class="tabla-container" style="background-color: #f5f5f5; padding: 15px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Fecha de Salida</th>
+                            <th>Fecha Promesa</th>
+                            <th>Destino</th>
+                            <th>Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-embarques-gerencia-body">
+                        <!-- Aquí se insertarán las filas dinámicamente con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-descargar-reporte-embarques">Descargar reporte</button>
+            <button class="btn btn-gris" id="btn-volver-reporte-embarques">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- ventana emergente - Información general -->
+<div class="modal" id="modal-info-general">
+    <div class="modal-contenedor" style="max-width: 600px;">
+        <div class="modal-header">
+            <h2>Información General</h2>
+            <button class="modal-close" id="cerrar-info-general">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 30px;">
+            <p style="margin-bottom: 15px; color: #333;">Resumen general de la planta:</p>
+            <ul style="line-height: 1.8; color: #555;">
+                <li>Producción actual: 780 unidades</li>
+                <li>Meta mensual: 800 unidades</li>
+                <li>Incidencias registradas: 24</li>
+                <li>Embarques en curso: 3</li>
+                <li>Eficiencia general: 92%</li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-gris" id="btn-volver-info-general">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Confirmar descarga   -->
+<div class="modal" id="modal-reporte-descargado">
+    <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
+        <div class="modal-header">
+            <h2>Reporte descargado</h2>
+            <button class="modal-close" id="cerrar-reporte-descargado">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 40px 20px;">
+            <p id="mensaje-reporte-descargado" style="font-size: 1.1rem; color: #333; margin-bottom: 20px;">
+                El reporte ha sido descargado exitosamente.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-volver-reporte-descargado">Volver</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Enviar reporte por correo -->
+<div class="modal" id="modal-enviar-reporte">
+    <div class="modal-contenedor" style="max-width: 500px;">
+        <div class="modal-header">
+            <h2>Enviar reporte por correo</h2>
+            <button class="modal-close" id="cerrar-enviar-reporte">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Correo destinatario</label>
+                <input type="email" placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group">
+                <label>Asunto</label>
+                <input type="text" value="Reporte de turno - NovaSound" readonly>
+            </div>
+            <div class="form-group">
+                <label>Mensaje (opcional)</label>
+                <textarea rows="3" placeholder="Adjunto reporte del turno..."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-enviar-reporte">Enviar</button>
+            <button class="btn btn-gris" id="btn-cancelar-enviar-reporte">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>

@@ -105,6 +105,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <button class="btn btn-gris" id="btn-abrir-cerrar-turno">Cerrar Turno</button>
             <button class="btn btn-verde" id="btn-enviar-reporte-produccion">Enviar</button>
             <button class="btn btn-gris" id="btn-cancelar-reporte-produccion">Cancelar</button>
         </div>
@@ -145,6 +146,25 @@
         <div class="modal-footer">
             <button class="btn btn-rojo" id="btn-enviar-incidente-produccion">Enviar Incidente</button>
             <button class="btn btn-gris" id="btn-cancelar-incidente-produccion">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana emergente - Cerrar el turno -->
+<div class="modal" id="modal-cerrar-turno">
+    <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
+        <div class="modal-header">
+            <h2>Cerrar Turno</h2>
+            <button class="modal-close" id="cerrar-cerrar-turno">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 40px 20px;">
+            <p style="font-size: 1.1rem; color: #333; margin-bottom: 20px;">
+                ¿Está seguro de cerrar el turno?<br>Esta acción no se puede deshacer.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-verde" id="btn-confirmar-cerrar-turno">Sí, cerrar turno</button>
+            <button class="btn btn-gris" id="btn-cancelar-cerrar-turno">Cancelar</button>
         </div>
     </div>
 </div>
