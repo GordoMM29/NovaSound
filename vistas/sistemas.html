@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,32 +18,34 @@
 
 <body>
 <div class="app-container">
-    <div class="vista activa" id="vista-sistemas">
+<div class="vista activa" id="vista-sistemas">
     <div class="bienvenida">
-            <p>Bienvenid@, nombrexd</p>
+            <p>Bienvenid@, <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Operador') ?></p>
             <p>Área: Sistemas</p>
         </div>
 
         <div class="sistemas-contenido">
             <div class="card sistemas-tabla">
             <div class="sistemas-header">
-                <input type="text" placeholder="Buscar mediante ID">
+                <input type="text" id="input-buscar-sistema" placeholder="Buscar mediante ID">
             </div>
             
                 <table>
                     <thead>
                         <tr>
                             <th>ID Usuario</th>
+                            <th>Nombre</th>
                             <th>Rol</th>
                             <th>Turno</th>
                             <th>Área</th>
                         </tr>
                     </thead>
+                    <tbody id="tabla-sistemas-body">
+                    </tbody>
                 </table>
             </div>
 
             <div class="sistemas-lateral">
-
                 <button class="btn btn-actualizar">Actualizar usuario</button>
                 <button class="btn btn-eliminar">Eliminar usuario</button>
                 <button class="btn btn-agg">Agregar usuario</button>
