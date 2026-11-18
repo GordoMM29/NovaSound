@@ -18,7 +18,7 @@ try {
                 u.ESTATUS_CALIDAD AS ESTATUS
             FROM unidades u
             INNER JOIN productos p ON u.ID_producto = p.ID_PRODUCTO
-            WHERE u.ESTATUS_PRODUCCION = 'Aprobado'
+            WHERE u.ESTATUS_PRODUCCION = 'Aprobado' AND (u.ESTATUS_CALIDAD IS NULL OR TRIM(u.ESTATUS_CALIDAD) = '' OR TRIM(u.ESTATUS_CALIDAD) NOT IN ('Liberada', 'Scrap', 'Retenida', 'Retrabajar'))
             ORDER BY u.NUMERO_SERIE DESC";
 
     $stmt = $pdo->prepare($sql);

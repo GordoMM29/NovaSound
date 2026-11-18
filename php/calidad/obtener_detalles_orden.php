@@ -14,18 +14,20 @@ $idOrden = trim($_GET['id_orden']);
 try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
 
-    $sql = "SELECT 
+    $sql = "SELECT DISTINCT
                 u.NUMERO_SERIE,
                 p.NOMBRE AS MODELO,
-                i.ESTATUS_PRUEBAS,
-                i.ESTATUS_APARIENCIA,
-                i.ESTATUS_ETIQUETA,
-                i.ESTATUS_ACCESORIOS,
-                i.ESTATUS_FINAL
+                COALESCE(i.ESTATUS_PRUEBAS, 'PENDIENTE') AS ESTATUS_PRUEBAS,
+                COALESCE(i.ESTATUS_APARIENCIA, 'PENDIENTE') AS ESTATUS_APARIENCIA,
+                COALESCE(i.ESTATUS_ETIQUETA, 'PENDIENTE') AS ESTATUS_ETIQUETA,
+                COALESCE(i.ESTATUS_ACCESORIOS, 'PENDIENTE') AS ESTATUS_ACCESORIOS,
+                COALESCE(i.ESTATUS_FINAL, 'PENDIENTE') AS ESTATUS_FINAL
             FROM unidades u
             INNER JOIN productos p ON u.ID_producto = p.ID_PRODUCTO
-            INNER JOIN inspeccion i ON u.NUMERO_SERIE = i.NUMERO_SERIE
-            WHERE u.ID_orden = :id_orden";
+            LEFT JOIN inspeccion i ON u.NUMERO_SERIE = i.NUMERO_SERIE
+            WHERE u.ID_orden = :id_orden 
+              AND u.ESTATUS_PRODUCCION = 'Aprobado'
+              AND u.ESTATUS_CALIDAD NOT IN ('Liberada', 'Scrap', 'Retenida', 'Retrabajar')";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id_orden' => $idOrden]);
