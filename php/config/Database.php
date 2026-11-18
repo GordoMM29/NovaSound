@@ -9,7 +9,7 @@ class Database
         $puerto = "3306";
         $bd = "NovaSoundDB";
         $usuario = "root";
-        $contrasena = "0852"; // Cambien cada uno su contraseña muchachones
+        $contrasena = ""; // Cambien cada uno su contraseña muchachones
 
         $dsn = "mysql:host=$host;port=$puerto;dbname=$bd;charset=utf8mb4";
 

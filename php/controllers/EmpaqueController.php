@@ -24,8 +24,8 @@ try {
     $stmt->execute(['id'=>$_SESSION['usuario_id']]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$usuario) respuestaEmpaque(401, ['success'=>false, 'error'=>'La sesión no corresponde a un usuario válido.']);
-    $area = strtolower(trim((string)$usuario['AREA']));
-    if ($usuario['ID_rol'] !== 'ROL-ADMIN' && $area !== 'Empaque') {
+    $area = strtoupper(trim((string)$usuario['AREA']));
+    if ($usuario['ID_rol'] !== 'ROL-ADMIN' && $area !== 'EMPAQUE') {
         respuestaEmpaque(403, ['success'=>false, 'error'=>'No tienes permisos para Empaque.']);
     }
 
@@ -53,6 +53,10 @@ try {
 } catch (DomainException | InvalidArgumentException $e) {
     respuestaEmpaque(422, ['success'=>false, 'error'=>$e->getMessage()]);
 } catch (Throwable $e) {
-    error_log('Empaque: '.$e->getMessage());
-    respuestaEmpaque(500, ['success'=>false, 'error'=>'Error del servidor. Revisa la terminal de PHP.']);
+    respuestaEmpaque(500, [
+        'success' => false, 
+        'error_real' => $e->getMessage(),
+        'archivo' => $e->getFile(),
+        'linea' => $e->getLine()
+    ]);
 }

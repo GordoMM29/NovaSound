@@ -36,8 +36,8 @@ if ($datosUsuario && $password === $datosUsuario['CONTRASENA']) {
             } elseif ($_SESSION['usuario_rol'] === 'ROL-SUBPRO') {
                 header("Location: ../../vistas/subgerencia.html");
             } else {
-                header("Location: ../../vistas/produccion.html");
-            }
+                header("Location: ../produccion/buscar_orden_produccion.php");            
+                }
             break;
         case 'ENSAMBLE':
             header("Location: ../../vistas/ensamble.html");

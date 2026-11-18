@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,14 +12,15 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/produccion.css">
     <link rel="stylesheet" href="../css/modales.css">
-    <script src="../js/produccion.js"></script>
+    
+    <script defer src="../js/produccion.js"></script>
 </head>
 
 <body>
 <div class="app-container">
     <div class="vista activa" id="vista-produccion">
         <div class="bienvenida">
-            <p>Bienvenid@, nombrexd</p>
+            <p>Bienvenid@, <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Operador') ?></p>
             <p>Área: Producción</p>
         </div>
 
@@ -24,62 +28,61 @@
             <div class="card produccion-form">
                 <div class="form-group">
                     <label>Cliente</label>
-                    <input type="text">
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_cliente'] ?? '') ?>" readonly>
                 </div>
                 
                 <div class="form-group">
                     <label>Modelo</label>
-                    <input type="text">
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_modelo'] ?? '') ?>" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Cantidad</label>
-                    <input type="text">
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_cantidad'] ?? '') ?>" readonly>
                 </div>
                 
                 <div class="form-group">
                     <label>Color</label>
-                    <input type="text">
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_color'] ?? '') ?>" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha compromiso</label>
-                    <input type="date">
+                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_fecha'] ?? '') ?>" readonly>
                 </div>
             </div>
 
             <div class="produccion-centro">
                 <div class="card produccion-info">
                     <div class="form-group">
-                    <label >No. Orden</label>
-                    <input type="text">
+                        <label>No. Orden</label>
+                        <input type="text" value="<?= htmlspecialchars($_SESSION['orden_id'] ?? '') ?>" readonly>
                     </div>
 
                     <div class="form-group">
-                    <label >Línea</label>
-                    <input type="text">
+                        <label>Línea</label>
+                        <input type="text" value="<?= htmlspecialchars($_SESSION['orden_linea'] ?? '') ?>" readonly>
                     </div>
 
                     <div class="form-group">
-                    <label >Turno</label>
-                    <input type="text">
+                        <label>Turno</label>
+                        <input type="text" value="<?= htmlspecialchars($_SESSION['orden_turno'] ?? '') ?>" readonly>
                     </div>
                 </div>
                 <div class="produccion-botones">
-                    <button class="btn btn-amarillo">Reportar Producción</button>
-                    <button class="btn btn-rojo">Reportar Incidente</button>
-                    </div>
+                    <button class="btn btn-amarillo" id="btn-abrir-reporte">Reportar Producción</button>
+                    <button class="btn btn-rojo" id="btn-abrir-incidente">Reportar Incidente</button>
+                </div>
             </div>
 
-                <div class="produccion-panel">
-                    <img src="../assets/img/senor.png" alt="Produccion" class="img-produccion">
-
-                </div>
+            <div class="produccion-panel">
+                <img src="../assets/img/senor.png" alt="Produccion" class="img-produccion">
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Ventana emergente - reportar produccion -->
+<!-- Modal Reporte Producción -->
 <div class="modal" id="modal-reporte-produccion">
     <div class="modal-contenedor">
         <div class="modal-header">
@@ -89,7 +92,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Orden</label>
-                <input type="text" value="ORD_01_031126" readonly>
+                <input type="text" value="<?= htmlspecialchars($_SESSION['orden_id'] ?? '') ?>" readonly>
             </div>
             <div class="form-group">
                 <label>Cantidad Producida</label>
@@ -112,7 +115,7 @@
     </div>
 </div>
 
-<!-- Ventana emergente - reportar un incidente -->
+<!-- Modal Incidente -->
 <div class="modal" id="modal-incidente-produccion">
     <div class="modal-contenedor">
         <div class="modal-header">
@@ -122,7 +125,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Orden</label>
-                <input type="text" value="ORD_01_031126" readonly>
+                <input type="text" value="<?= htmlspecialchars($_SESSION['orden_id'] ?? '') ?>" readonly>
             </div>
             <div class="form-group">
                 <label>Fecha y Hora</label>
@@ -150,7 +153,7 @@
     </div>
 </div>
 
-<!-- Ventana emergente - Cerrar el turno -->
+<!-- Modal Cerrar Turno -->
 <div class="modal" id="modal-cerrar-turno">
     <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
         <div class="modal-header">
