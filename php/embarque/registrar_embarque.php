@@ -22,7 +22,7 @@ if (empty($idCaja) || empty($fechaSalida) || empty($destino)) {
 try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
 
-    $sql = "INSERT INTO embarques (ID_caja, FECHA_EMBARQUE, DESTINO, ESTATUS) 
+    $sql = "INSERT INTO embarques ( ID_caja, FECHA_EMBARQUE, DESTINO, ESTATUS) 
             VALUES (:id_caja, :fecha_embarque, :destino, 'En tránsito')";
             
     $stmt = $pdo->prepare($sql);
@@ -31,6 +31,7 @@ try {
         'fecha_embarque' => $fechaSalida,
         'destino' => $destino
     ]);
+
 
     echo json_encode(['success' => true]);
 

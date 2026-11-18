@@ -22,47 +22,49 @@
 </div>
 <div class="embarque-contenido">
     <div class="embarque-lateral">
-    <div class="card embarque-form">
-        <h3>Crear embarque</h3>
-        <div class="form-group">
-            <label>ID Caja</label>
-            <select id="select-id-caja">
-                <option value="">Seleccione caja</option>
-            </select>
-        </div>
+        <div class="card embarque-form">
+            <h3>Crear embarque</h3>
+            <div class="form-group">
+                <label>ID Caja</label>
+                <select id="select-id-caja">
+                    <option value="">Seleccione caja</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Fecha Salida</label>
-            <input type="date" id="input-fecha-salida">
-        </div>
+            <div class="form-group">
+                <label>Fecha Salida</label>
+                <input type="date" id="input-fecha-salida">
+            </div>
 
-        <div class="form-group">
-            <label>Destino</label>
-            <input type="text" id="input-destino" placeholder="Escriba la dirección...">
-        </div>
-        <div class="embarque-acciones">
+            <div class="form-group">
+                <label>Destino</label>
+                <input type="text" id="input-destino" placeholder="Escriba la dirección...">
+            </div>
+            <div class="embarque-acciones">
                 <button class="btn btn-morado" id="btn-finalizar-embarque">Finalizar</button>
+            </div>
         </div>
     </div>
-</div>
 
         <div class="card embarque-centro">
             
             <div class="embarque-header">
                 <h3>Entregas en curso</h3>
-                    <input type="text" placeholder="Buscar mediante ID" class="form-group">
-                </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Cliente</th>
-                                <th>Fecha salida</th>
-                                <th>Fecha promesa</th>
-                                <th>Estatus</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <input type="text" id="input-buscar-embarque" placeholder="Buscar mediante ID" class="form-group">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Fecha salida</th>
+                        <th>Fecha promesa</th>
+                        <th>Estatus</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-embarques-body">
+                </tbody>
+            </table>
                 
         </div>
 

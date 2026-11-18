@@ -11,10 +11,10 @@ if (empty($_SESSION['usuario_id'])) {
 try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
     
-    $sql = "SELECT ID_CAJA 
+    $sql = "SELECT ID_CAJA, CANTIDAD_UNIDADES 
             FROM cajas 
             WHERE ESTATUS = 'Cerrada' 
-            AND ID_CAJA NOT IN (SELECT ID_caja FROM embarques)";
+              AND ID_CAJA NOT IN (SELECT ID_caja FROM embarques WHERE ESTATUS = 'En tránsito')";
               
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
