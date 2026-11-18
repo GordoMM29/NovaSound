@@ -13,9 +13,9 @@ $idSolicitud = intval($_GET['id']);
 try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
     $sql = "SELECT s.ID_SOLICITUD, s.OBJETO, s.ID_usuario, u.NOMBRE AS NOMBRE_USUARIO, s.FECHA_SOLICITUD, s.MOTIVO, s.ESTATUS 
-            FROM solicitudes_cambios s WHEREE s.ESTATUS= 'Pendiente'
+            FROM solicitudes_cambios s
             INNER JOIN usuarios u ON s.ID_usuario = u.ID_USUARIO
-            WHERE s.ID_SOLICITUD = :id" ;
+            WHERE s.ID_SOLICITUD = :id";
             
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id' => $idSolicitud]);
