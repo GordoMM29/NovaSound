@@ -19,7 +19,7 @@ if (empty($idTurno)) {
 try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
     
-    $sql = "UPDATE cierres_turno SET ESTATUS = 'Abierto' WHERE ID_TURNO = :id_turno";
+    $sql = "UPDATE cierres_turno SET ESTATUS = 'Abierto' WHERE ID_TURNO = :id_turno AND fecha_cierre = current_date()";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id_turno' => $idTurno]);
 

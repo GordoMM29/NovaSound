@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const cargarTurnos = async () => {
         try {
-            const res = await fetch('../php/gerencia/obtener_turnos.php');
+            const res = await fetch('../php/gerencia_de_produccion/obtener_turnos.php');
             const turnos = await res.json();
             if (selectTurno) {
                 selectTurno.innerHTML = '<option value="">Seleccione turno</option>';
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         btnConfirmarReabrir.addEventListener('click', async () => {
             const idTurno = selectTurno.value;
             try {
-                const res = await fetch('../php/gerencia/reabrir_turno.php', {
+                const res = await fetch('../php/gerencia_de_produccion/reabrir_turno.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id_turno: idTurno })
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const btn = document.getElementById(idBtn);
         if (btn) {
             btn.addEventListener('click', () => {
-                window.open(`../php/gerencia_produccion/\${urlReporte}`, '_blank');
+                window.open(`../php/gerencia_de_produccion/${urlReporte}`, '_blank');
             });
         }
     };
@@ -91,3 +91,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     vincularReporte('btn-historico-produccion', 'reporte_historico_produccion.php');
     vincularReporte('btn-historico-calidad', 'reporte_historico_calidad.php');
     vincularReporte('btn-historico-almacen', 'reporte_historico_almacen.php');
+});
