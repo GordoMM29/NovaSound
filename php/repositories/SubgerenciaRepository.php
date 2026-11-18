@@ -10,18 +10,32 @@ class SubgerenciaRepository implements SubgerenciaRepositoryInterface
         $this->pdo = $pdo;
     }
 
-    public function resumenLineas(): array
-    {
-        $sql = "SELECT l.ID_LINEA, l.NOMBRE AS LINEA,
-                       COUNT(DISTINCT o.ID_ORDEN) AS ORDENES,
-                       COUNT(DISTINCT u.NUMERO_SERIE) AS UNIDADES
-                FROM lineas l
-                LEFT JOIN ordenes_produccion o ON o.ID_linea = l.ID_LINEA
-                LEFT JOIN unidades u ON u.ID_orden = o.ID_ORDEN
-                GROUP BY l.ID_LINEA, l.NOMBRE
-                ORDER BY l.ID_LINEA";
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
+   
+public function resumenLineas(): array
+{
+    $sql = "SELECT
+                l.ID_LINEA,
+                l.NOMBRE AS LINEA,
+                COUNT(DISTINCT o.ID_ORDEN) AS ORDENES,
+                COUNT(DISTINCT u.NUMERO_SERIE) AS UNIDADES
+            FROM lineas l
+            LEFT JOIN ordenes_produccion o
+                ON o.ID_linea = l.ID_LINEA
+            LEFT JOIN unidades u
+                ON u.ID_orden = o.ID_ORDEN
+            WHERE l.ID_LINEA IN (
+                'L1-PROD',
+                'L2-PROD',
+                'L3-PROD',
+                'L4-PROD'
+            )
+            GROUP BY l.ID_LINEA, l.NOMBRE
+            ORDER BY l.ID_LINEA";
+
+    return $this->pdo
+        ->query($sql)
+        ->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function listarSolicitudes(): array
     {

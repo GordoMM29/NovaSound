@@ -35,11 +35,24 @@ try {
     if (!$usuario) {
         respuestaJson(401, ['success' => false, 'error' => 'La sesión ya no corresponde a un usuario válido.']);
     }
-    $rol = strtoupper((string)$usuario['ID_rol']);
-    $area = strtoupper((string)$usuario['AREA']);
-    if ($rol !== 'ROL-ADMIN' && strpos($rol, 'SUBGER') === false && strpos($area, 'SUBGERENCIA') === false) {
-        respuestaJson(403, ['success' => false, 'error' => 'No tienes permisos de Subgerencia.']);
-    }
+ 
+$rol = strtoupper(trim((string)$usuario['ID_rol']));
+$area = strtoupper(trim((string)$usuario['AREA']));
+
+$esAdministrador = ($rol === 'ROL-ADMIN');
+
+$esSubgerente = (
+    $rol === 'ROL-SUBPRO' &&
+    $area === 'PRODUCCION'
+);
+
+if (!$esAdministrador && !$esSubgerente) {
+    respuestaJson(403, [
+        'success' => false,
+        'error' => 'No tienes permisos de Subgerencia.'
+    ]);
+}
+
 
     if (empty($_SESSION['csrf_subgerencia'])) {
         $_SESSION['csrf_subgerencia'] = bin2hex(random_bytes(32));
