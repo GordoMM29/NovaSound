@@ -29,7 +29,7 @@ class EnsambleRepository implements EnsambleRepositoryInterface
     {
         $this->pdo->beginTransaction();
         try {
-            // Serializa los registros de una misma orden para impedir sobreproducción simultánea.
+            // Esta parte se suara para sereañizar asi evitamos el sobre registro de unidades en caso de concurrencia.(Concurrencia que palabra mas sofisticada osea palabras menores evitar el sobrepedido )
             $stmt = $this->pdo->prepare('SELECT ID_ORDEN, ID_producto, COLOR, CANTIDAD_PRODUCIDA, ESTATUS
                                          FROM ordenes_produccion WHERE ID_ORDEN = :orden FOR UPDATE');
             $stmt->execute(['orden' => $orden]);
@@ -39,8 +39,7 @@ class EnsambleRepository implements EnsambleRepositoryInterface
                 throw new DomainException('No se pueden registrar unidades para esta orden.');
             }
 
-            // CANTIDAD_PRODUCIDA se usa aquí como límite autorizado por la orden.
-            // Confirmar esta semántica con el equipo antes de cambiarla en Producción.
+            // CANTIDAD_PRODUCIDA sera nuesto limitante de unidades 
             $stmt = $this->pdo->prepare('SELECT COUNT(*) FROM unidades WHERE ID_orden = :orden');
             $stmt->execute(['orden' => $orden]);
             $existentes = (int) $stmt->fetchColumn();

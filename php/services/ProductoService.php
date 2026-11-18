@@ -17,3 +17,4 @@ class ProductoService
         return $this->repositorio->obtenerTodos();
     }
 }
+//Dios vendia al codigo corto

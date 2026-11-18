@@ -20,8 +20,8 @@ if (!isset($_SESSION['usuario_id'])) {
     responder(401, ['success' => false, 'error' => 'Debes iniciar sesión.']);
 }
 
-// De momento ROL-ADMIN es el único rol directivo definido en el SQL.
-// Ajustar la lista cuando el equipo implemente permisos específicos de Gerencia.
+// POS momento ROL-ADMIN es el uico rol directivo definido en el SQL.
+//En esta parte correguir cuando los roles de gerente 
 $rol = (string) ($_SESSION['usuario_rol'] ?? '');
 if ($rol !== 'ROL-ADMIN') {
     responder(403, ['success' => false, 'error' => 'No tienes permisos para consultar Gerencia de Planta.']);
