@@ -11,7 +11,8 @@ try {
     $pdo = conexion::obtenerInstancia()->obtenerConexion();
 
     $sql = "SELECT 
-                op.ID_ORDEN, 
+                op.ID_ORDEN,
+                op.ID_producto,
                 c.NOMBRE AS CLIENTE, 
                 p.NOMBRE AS MODELO, 
                 op.CANTIDAD_REQUERIDA, 
@@ -38,6 +39,7 @@ try {
 
     if ($orden) {
         $_SESSION['orden_id']         = $orden['ID_ORDEN'];
+        $_SESSION['orden_producto_id']= $orden['ID_producto'];
         $_SESSION['orden_cliente']    = $orden['CLIENTE'];
         $_SESSION['orden_modelo']     = $orden['MODELO'];
         $_SESSION['orden_requerida']  = $orden['CANTIDAD_REQUERIDA'];
