@@ -22,14 +22,21 @@ if (!isset($_SESSION['usuario_id'])) {
 
 // POS momento ROL-ADMIN es el uico rol directivo definido en el SQL.
 //En esta parte correguir cuando los roles de gerente 
-$rol = (string) ($_SESSION['usuario_rol'] ?? '');
-if ($rol !== 'ROL-ADMIN') {
-    responder(403, ['success' => false, 'error' => 'No tienes permisos para consultar Gerencia de Planta.']);
-}
+$rol = strtoupper(trim((string) ($_SESSION['usuario_rol'] ?? '')));
+$area = strtoupper(trim((string) ($_SESSION['usuario_area'] ?? '')));
 
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    header('Allow: GET');
-    responder(405, ['success' => false, 'error' => 'Método no permitido.']);
+$esGerentePlanta = (
+    $rol === 'ROL-GERPLA' &&
+    $area === 'GERENCIA DE PLANTA'
+);
+
+$esAdministrador = ($rol === 'ROL-ADMIN');
+
+if (!$esGerentePlanta && !$esAdministrador) {
+    responder(403, [
+        'success' => false,
+        'error' => 'No tienes permisos para consultar Gerencia de Planta.'
+    ]);
 }
 
 try {
