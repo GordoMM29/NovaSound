@@ -25,7 +25,7 @@ try {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$usuario) respuestaEmpaque(401, ['success'=>false, 'error'=>'La sesión no corresponde a un usuario válido.']);
     $area = strtolower(trim((string)$usuario['AREA']));
-    if ($usuario['ID_rol'] !== 'ROL-ADMIN' && $area !== 'empaque') {
+    if ($usuario['ID_rol'] !== 'ROL-ADMIN' && $area !== 'Empaque') {
         respuestaEmpaque(403, ['success'=>false, 'error'=>'No tienes permisos para Empaque.']);
     }
 
