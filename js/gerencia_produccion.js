@@ -92,3 +92,88 @@ document.addEventListener('DOMContentLoaded', async () => {
     vincularReporte('btn-historico-calidad', 'reporte_historico_calidad.php');
     vincularReporte('btn-historico-almacen', 'reporte_historico_almacen.php');
 });
+
+    const modalSolicitud = document.getElementById('modal-solicitud');
+    const cerrarSolicitudX = document.getElementById('cerrar-solicitud');
+    const btnVolverSolicitud = document.getElementById('btn-volver-solicitud');
+    const tablaSolicitudBody = document.getElementById('tabla-solicitud-body');
+    const btnAprobar = document.getElementById('btn-aprobar-solicitud');
+    const btnRechazar = document.getElementById('btn-rechazar-solicitud');
+
+    let solicitudActualId = null;
+
+    document.querySelectorAll('.btn-solicitud').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const idSolicitud = e.target.getAttribute('data-id');
+            solicitudActualId = idSolicitud;
+
+            try {
+                const res = await fetch(`../php/gerencia_de_produccion/obtener_solicitud.php?id=${idSolicitud}`);
+                const data = await res.json();
+
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                if (tablaSolicitudBody) {
+                    tablaSolicitudBody.innerHTML = `
+                        <tr>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${data.OBJETO}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${data.NOMBRE_USUARIO} (${data.ID_usuario})</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${data.FECHA_SOLICITUD}</td>
+                            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${data.MOTIVO}</td>
+                        </tr>
+                    `;
+                }
+
+                if (modalSolicitud) {
+                    modalSolicitud.style.setProperty('display', 'flex', 'important');
+                    modalSolicitud.classList.add('activo');
+                }
+            } catch (err) {
+                console.error('Error al cargar la solicitud:', err);
+            }
+        });
+    });
+
+    const cerrarModalSolicitud = () => {
+        if (modalSolicitud) {
+            modalSolicitud.style.display = 'none';
+            modalSolicitud.classList.remove('activo');
+        }
+    };
+
+    if (cerrarSolicitudX) cerrarSolicitudX.addEventListener('click', cerrarModalSolicitud);
+    if (btnVolverSolicitud) btnVolverSolicitud.addEventListener('click', cerrarModalSolicitud);
+
+    const cambiarEstatusSolicitud = async (estatus) => {
+        if (!solicitudActualId) return;
+
+        try {
+            const res = await fetch('../php/gerencia_de_produccion/actualizar_estatus_solicitud.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: solicitudActualId, estatus: estatus })
+            });
+            const r = await res.json();
+
+            if (r.success) {
+                alert(`¡Solicitud ${estatus.toLowerCase()} exitosamente!`);
+                cerrarModalSolicitud();
+                location.reload();
+            } else {
+                alert('Error al actualizar: ' + (r.error || 'Desconocido'));
+            }
+        } catch (err) {
+            console.error('Error en la petición:', err);
+        }
+    };
+
+    if (btnAprobar) {
+        btnAprobar.addEventListener('click', () => cambiarEstatusSolicitud('Aprobado'));
+    }
+
+    if (btnRechazar) {
+        btnRechazar.addEventListener('click', () => cambiarEstatusSolicitud('Rechazado'));
+    }
