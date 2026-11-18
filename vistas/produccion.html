@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +12,8 @@ session_start();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/produccion.css">
     <link rel="stylesheet" href="../css/modales.css">
-    <script src="../js/produccion.js"></script>
+    
+    <script defer src="../js/produccion.js"></script>
 </head>
 
 <body>
@@ -70,8 +70,8 @@ session_start();
                     </div>
                 </div>
                 <div class="produccion-botones">
-                    <button class="btn btn-amarillo">Reportar Producción</button>
-                    <button class="btn btn-rojo">Reportar Incidente</button>
+                    <button class="btn btn-amarillo" id="btn-abrir-reporte">Reportar Producción</button>
+                    <button class="btn btn-rojo" id="btn-abrir-incidente">Reportar Incidente</button>
                 </div>
             </div>
 
@@ -82,6 +82,7 @@ session_start();
     </div>
 </div>
 
+<!-- Modal Reporte Producción -->
 <div class="modal" id="modal-reporte-produccion">
     <div class="modal-contenedor">
         <div class="modal-header">
@@ -114,6 +115,7 @@ session_start();
     </div>
 </div>
 
+<!-- Modal Incidente -->
 <div class="modal" id="modal-incidente-produccion">
     <div class="modal-contenedor">
         <div class="modal-header">
@@ -151,6 +153,7 @@ session_start();
     </div>
 </div>
 
+<!-- Modal Cerrar Turno -->
 <div class="modal" id="modal-cerrar-turno">
     <div class="modal-contenedor" style="max-width: 450px; text-align: center;">
         <div class="modal-header">
