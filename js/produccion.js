@@ -1,68 +1,53 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch('../php/login/verificar_sesion.php', {
-            method: 'GET',
-            credentials: 'include' 
-        });
-        
-        const data = await response.json();
-        
-        if (!data.autenticado) {
-            alert('Por favor, inicia sesión para acceder a este módulo.');
-            window.location.href = '../vistas/login.html';
-        }
-    } catch (error) {
-        console.error('Error al verificar la sesión:', error);
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM cargado correctamente."); 
-
     const btnAbrirReporte = document.getElementById('btn-abrir-reporte');
     const modalReporte = document.getElementById('modal-reporte-produccion');
     const btnCerrarReporte = document.getElementById('cerrar-reporte-produccion');
     const btnCancelarReporte = document.getElementById('btn-cancelar-reporte-produccion');
-    const inputFechaHora = document.getElementById('fecha-hora-produccion');
+    const formReporte = document.getElementById('form-reporte-produccion');
+    const inputCantidadAgregar = document.getElementById('input-cantidad-agregar');
 
-    function obtenerFechaHoraActual() {
-        const ahora = new Date();
-        const horas = String(ahora.getHours()).padStart(2, '0');
-        const minutos = String(ahora.getMinutes()).padStart(2, '0');
-        const dia = String(ahora.getDate()).padStart(2, '0');
-        const mes = String(ahora.getMonth() + 1).padStart(2, '0');
-        const anio = ahora.getFullYear();
-
-        return `${horas}:${minutos} - ${dia}/${mes}/${anio}`;
-    }
+    const cerrarModal = () => {
+        if (modalReporte) {
+            modalReporte.style.display = 'none';
+            modalReporte.classList.remove('activo');
+        }
+    };
 
     if (btnAbrirReporte && modalReporte) {
         btnAbrirReporte.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log("Botón de reporte presionado."); 
-            
-            modalReporte.style.display = 'flex';
+            modalReporte.style.setProperty('display', 'flex', 'important');
             modalReporte.classList.add('activo');
+        });
+    }
 
-            if (inputFechaHora) {
-                inputFechaHora.value = obtenerFechaHoraActual();
+    if (btnCerrarReporte) btnCerrarReporte.addEventListener('click', cerrarModal);
+    if (btnCancelarReporte) btnCancelarReporte.addEventListener('click', cerrarModal);
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modalReporte) cerrarModal();
+    });
+
+    if (formReporte && inputCantidadAgregar) {
+        formReporte.addEventListener('submit', (e) => {
+            const requerida = parseInt(inputCantidadAgregar.getAttribute('data-requerida')) || 0;
+            const producidaActual = parseInt(inputCantidadAgregar.getAttribute('data-producida-actual')) || 0;
+            const cantidadNueva = parseInt(inputCantidadAgregar.value) || 0;
+
+            const pendiente = requerida - producidaActual;
+
+            if (cantidadNueva <= 0) {
+                e.preventDefault();
+                alert("Por favor, ingresa una cantidad mayor a 0.");
+                inputCantidadAgregar.focus();
+                return;
             }
-        });
-    } else {
-        console.warn("No se encontró el botón 'btn-abrir-reporte' o el modal.");
-    }
 
-    if (btnCerrarReporte && modalReporte) {
-        btnCerrarReporte.addEventListener('click', () => {
-            modalReporte.style.display = 'none';
-            modalReporte.classList.remove('activo');
-        });
-    }
-
-    if (btnCancelarReporte && modalReporte) {
-        btnCancelarReporte.addEventListener('click', () => {
-            modalReporte.style.display = 'none';
-            modalReporte.classList.remove('activo');
+            if (cantidadNueva > pendiente) {
+                e.preventDefault(); 
+                alert('Error: No puedes reportar ' + cantidadNueva + ' unidades. Lo pendiente por producir es de solo ' + pendiente + ' unidades.');
+                inputCantidadAgregar.focus();
+            }
         });
     }
 });

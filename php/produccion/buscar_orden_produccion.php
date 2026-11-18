@@ -14,7 +14,8 @@ try {
                 op.ID_ORDEN, 
                 c.NOMBRE AS CLIENTE, 
                 p.NOMBRE AS MODELO, 
-                op.CANTIDAD_PRODUCIDA AS CANTIDAD, 
+                op.CANTIDAD_REQUERIDA, 
+                op.CANTIDAD_PRODUCIDA, 
                 op.COLOR, 
                 op.FECHA_COMPROMISO, 
                 l.NOMBRE AS LINEA, 
@@ -36,37 +37,40 @@ try {
     $orden = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($orden) {
-        $_SESSION['orden_id']       = $orden['ID_ORDEN'];
-        $_SESSION['orden_cliente']  = $orden['CLIENTE'];
-        $_SESSION['orden_modelo']   = $orden['MODELO'];
-        $_SESSION['orden_cantidad'] = $orden['CANTIDAD'];
-        $_SESSION['orden_color']    = $orden['COLOR'];
-        $_SESSION['orden_fecha']    = $orden['FECHA_COMPROMISO'];
-        $_SESSION['orden_linea']    = $orden['LINEA'];
-        $_SESSION['orden_turno']    = $orden['TURNO'];
+        $_SESSION['orden_id']         = $orden['ID_ORDEN'];
+        $_SESSION['orden_cliente']    = $orden['CLIENTE'];
+        $_SESSION['orden_modelo']     = $orden['MODELO'];
+        $_SESSION['orden_requerida']  = $orden['CANTIDAD_REQUERIDA'];
+        $_SESSION['orden_producida']  = $orden['CANTIDAD_PRODUCIDA'];
+        $_SESSION['orden_color']      = $orden['COLOR'];
+        $_SESSION['orden_fecha']      = $orden['FECHA_COMPROMISO'];
+        $_SESSION['orden_linea']      = $orden['LINEA'];
+        $_SESSION['orden_turno']      = $orden['TURNO'];
     } else {
-        $_SESSION['orden_id']       = 'SIN ASIGNAR';
-        $_SESSION['orden_cliente']  = 'N/D';
-        $_SESSION['orden_modelo']   = 'N/D';
-        $_SESSION['orden_cantidad'] = 0;
-        $_SESSION['orden_color']    = 'N/D';
-        $_SESSION['orden_fecha']    = date('Y-m-d');
-        $_SESSION['orden_linea']    = 'Sin línea';
-        $_SESSION['orden_turno']    = 'Sin turno';
+        $_SESSION['orden_id']         = 'SIN ASIGNAR';
+        $_SESSION['orden_cliente']    = 'N/D';
+        $_SESSION['orden_modelo']     = 'N/D';
+        $_SESSION['orden_requerida']  = 0;
+        $_SESSION['orden_producida']  = 0;
+        $_SESSION['orden_color']      = 'N/D';
+        $_SESSION['orden_fecha']      = date('Y-m-d');
+        $_SESSION['orden_linea']      = 'Sin línea';
+        $_SESSION['orden_turno']      = 'Sin turno';
     }
 
     header("Location: ../../vistas/produccion.html");
     exit();
 
 } catch (Exception $e) {
-    $_SESSION['orden_id']       = 'ERROR SQL';
-    $_SESSION['orden_cliente']  = $e->getMessage();
-    $_SESSION['orden_modelo']   = '';
-    $_SESSION['orden_cantidad'] = '';
-    $_SESSION['orden_color']    = '';
-    $_SESSION['orden_fecha']    = '';
-    $_SESSION['orden_linea']    = '';
-    $_SESSION['orden_turno']    = '';
+    $_SESSION['orden_id']         = 'ERROR SQL';
+    $_SESSION['orden_cliente']    = $e->getMessage();
+    $_SESSION['orden_modelo']     = '';
+    $_SESSION['orden_requerida']  = '';
+    $_SESSION['orden_producida']  = '';
+    $_SESSION['orden_color']      = '';
+    $_SESSION['orden_fecha']      = '';
+    $_SESSION['orden_linea']      = '';
+    $_SESSION['orden_turno']      = '';
     
     header("Location: ../../vistas/produccion.html");
     exit();

@@ -37,9 +37,14 @@ session_start();
                 </div>
 
                 <div class="form-group">
-                    <label>Cantidad</label>
-                    <input type="text" value="<?= htmlspecialchars($_SESSION['orden_cantidad'] ?? '') ?>" readonly>
-                </div>
+                    <label>Cantidad Requerida</label>
+                        <input type="text" value="<?= htmlspecialchars($_SESSION['orden_requerida'] ?? '0') ?>" readonly>
+                 </div>
+
+                <div class="form-group">
+                    <label>Cantidad Producida</label>
+                        <input type="text" value="<?= htmlspecialchars($_SESSION['orden_producida'] ?? '0') ?>" readonly>
+                 </div>
                 
                 <div class="form-group">
                     <label>Color</label>
@@ -82,36 +87,40 @@ session_start();
     </div>
 </div>
 
-<!-- Modal Reporte Producción -->
 <div class="modal" id="modal-reporte-produccion">
     <div class="modal-contenedor">
         <div class="modal-header">
             <h2>Reportar Produccion</h2>
-            <button class="modal-close" id="cerrar-reporte-produccion">&times;</button>
+            <button type="button" class="modal-close" id="cerrar-reporte-produccion">&times;</button>
         </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Orden</label>
-                <input type="text" value="<?= htmlspecialchars($_SESSION['orden_id'] ?? '') ?>" readonly>
+        <form action="../php/produccion/reportar_produccion.php" method="POST" id="form-reporte-produccion">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Orden</label>
+                    <input type="text" name="id_orden" value="<?= htmlspecialchars($_SESSION['orden_id'] ?? '') ?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad Producida</label>
+                    <!-- Agregamos el ID y los atributos data-* que lee tu JavaScript -->
+                    <input type="number" 
+                           name="cantidad_producida" 
+                           id="input-cantidad-agregar"
+                           min="1" 
+                           data-requerida="<?= (int)($_SESSION['orden_requerida'] ?? 0) ?>"
+                           data-producida-actual="<?= (int)($_SESSION['orden_producida'] ?? 0) ?>"
+                           placeholder="Ingrese cantidad" 
+                           required>
+                </div>
+                <div class="aviso-amarillo">
+                    <strong>AVISO</strong><br>
+                    La cantidad no puede superar lo pendiente a lo de la orden.
+                </div>
             </div>
-            <div class="form-group">
-                <label>Cantidad Producida</label>
-                <input type="number" placeholder="Ingrese cantidad">
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-verde" id="btn-enviar-reporte-produccion">Enviar</button>
+                <button type="button" class="btn btn-gris" id="btn-cancelar-reporte-produccion">Cancelar</button>
             </div>
-            <div class="form-group">
-                <label>Fecha y Hora</label>
-                <input type="text" id="fecha-hora-produccion" readonly>
-            </div>
-            <div class="aviso-amarillo">
-                <strong>AVISO</strong><br>
-                La cantidad no puede superar lo pendiente a lo de la orden.
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-gris" id="btn-abrir-cerrar-turno">Cerrar Turno</button>
-            <button class="btn btn-verde" id="btn-enviar-reporte-produccion">Enviar</button>
-            <button class="btn btn-gris" id="btn-cancelar-reporte-produccion">Cancelar</button>
-        </div>
+        </form>
     </div>
 </div>
 
