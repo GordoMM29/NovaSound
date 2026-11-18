@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +21,7 @@
 <div class="app-container">
 <div class="vista activa" id="vista-embarque">
     <div class="bienvenida">
-    <p>Bienvenid@, xd</p>
+    <p>Bienvenid@, <?= htmlspecialchars($_SESSION['usuario_nombre'] ?? 'Operador') ?></p>
     <p>Área: Embarque</p>
 </div>
 <div class="embarque-contenido">
