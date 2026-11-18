@@ -22,29 +22,29 @@
 </div>
 <div class="embarque-contenido">
     <div class="embarque-lateral">
-        <div class="card embarque-form">
-            <h3>Crear embarque</h3>
-            <div class="form-group">
-                <label>ID Caja</label>
-                <select>
-                    <option>Seleccione caja</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Fecha Salida</label>
-                <input type="date">
-            </div>
-
-            <div class="form-group">
-                <label>Destino</label>
-                <input type="text">
-            </div>
-            <div class="embarque-acciones">
-                    <button class="btn btn-morado">Finalizar</button>
-            </div>
+    <div class="card embarque-form">
+        <h3>Crear embarque</h3>
+        <div class="form-group">
+            <label>ID Caja</label>
+            <select id="select-id-caja">
+                <option value="">Seleccione caja</option>
+            </select>
         </div>
+
+        <div class="form-group">
+            <label>Fecha Salida</label>
+            <input type="date" id="input-fecha-salida">
         </div>
+
+        <div class="form-group">
+            <label>Destino</label>
+            <input type="text" id="input-destino" placeholder="Escriba la dirección...">
+        </div>
+        <div class="embarque-acciones">
+                <button class="btn btn-morado" id="btn-finalizar-embarque">Finalizar</button>
+        </div>
+    </div>
+</div>
 
         <div class="card embarque-centro">
             
